@@ -32,12 +32,6 @@
     <link rel="apple-touch-icon" sizes="57x57" href="./icons/icon-57.png">
     <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#004080">
     
-    <!-- Splash screens for iOS -->
-    <link rel="apple-touch-startup-image" href="./icons/splash-640x1136.png" media="(device-width: 320px) and (device-height: 568px)">
-    <link rel="apple-touch-startup-image" href="./icons/splash-750x1334.png" media="(device-width: 375px) and (device-height: 667px)">
-    <link rel="apple-touch-startup-image" href="./icons/splash-1242x2208.png" media="(device-width: 414px) and (device-height: 736px)">
-    <link rel="apple-touch-startup-image" href="./icons/splash-1125x2436.png" media="(device-width: 375px) and (device-height: 812px)">
-    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
     
@@ -58,19 +52,15 @@
             padding: 20px;
         }
 
-        /* PWA Install Button - Fixed Top Right */
+        /* PWA Install Button - Inline with header */
         .pwa-install-btn {
             display: none;
-            position: fixed;
-            top: 15px;
-            right: 15px;
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: #ffffff;
-            padding: 10px 20px;
+            padding: 12px 28px;
             border-radius: 25px;
             box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
-            z-index: 9999;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -79,6 +69,7 @@
             font-family: 'Oswald', Arial, sans-serif;
             letter-spacing: 0.5px;
             animation: pulse-glow 2s ease-in-out infinite;
+            margin: 20px auto 0;
         }
 
         @keyframes pulse-glow {
@@ -224,22 +215,22 @@
         .section-tabs {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             margin-bottom: 15px;
         }
 
         .section-tab {
-            padding: 8px 16px;
+            padding: 6px 12px;
             border: 2px solid #004080;
             border-radius: 20px;
             background: #f8f9fa;
             color: #004080;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .section-tab:hover {
@@ -397,7 +388,7 @@
         }
 
         .card-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             margin-bottom: 5px;
             letter-spacing: 0.5px;
@@ -772,12 +763,12 @@
             }
 
             .section-tabs {
-                gap: 5px;
+                gap: 4px;
             }
 
             .section-tab {
-                padding: 6px 12px;
-                font-size: 10px;
+                padding: 5px 8px;
+                font-size: 9px;
             }
 
             .nav-buttons {
@@ -808,20 +799,13 @@
             }
 
             .pwa-install-btn {
-                font-size: 11px;
-                padding: 8px 15px;
-                top: 10px;
-                right: 10px;
+                font-size: 12px;
+                padding: 10px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- PWA Install Button - Top Right -->
-    <div class="pwa-install-btn" id="pwaInstallBtn" onclick="installPWA()">
-        <span class="install-icon">📲</span>INSTALL APP
-    </div>
-
     <!-- Update Notification -->
     <div class="update-notification" id="updateNotification">
         New version available! <button onclick="updateApp()" style="margin-left: 10px; padding: 5px 15px; border: none; background: #fff; color: #28a745; border-radius: 4px; cursor: pointer; font-weight: 700;">UPDATE</button>
@@ -897,632 +881,1047 @@
             <p class="tagline"><em>Driving Data-Driven Solutions for Health and Development</em></p>
             <h1>SNT AUTOMATION TOOLS</h1>
             <p class="subtitle">Subnational Tailoring - Streamlined Data Processing & Analysis</p>
+            
+            <!-- PWA Install Button - Now inside header after subtitle -->
+            <div class="pwa-install-btn" id="pwaInstallBtn" onclick="installPWA()">
+                <span class="install-icon">📲</span>INSTALL APP
+            </div>
         </div>
 
         <!-- Section Navigation -->
         <div class="section-nav-container">
             <div class="section-tabs">
-                <div class="section-tab active" onclick="goToSection(1)">1. DATA PREPROCESSING</div>
-                <div class="section-tab" onclick="goToSection(2)">2. EPI STRATIFICATION</div>
-                <div class="section-tab" onclick="goToSection(3)">3. DATA TRANSFORMATION</div>
-                <div class="section-tab" onclick="goToSection(4)">4. ANALYSIS TOOLS</div>
-                <div class="section-tab" onclick="goToSection(5)">5. VISUALIZATION</div>
-                <div class="section-tab" onclick="goToSection(6)">6. EXPORT & REPORTING</div>
+                <div class="section-tab active" onclick="goToSection(1)">1. DATA EXTRACTION</div>
+                <div class="section-tab" onclick="goToSection(2)">2. DATA TRANSFORMATION</div>
+                <div class="section-tab" onclick="goToSection(3)">3. ROUTINE EPI PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(4)">4. REPORTING ANALYSIS</div>
+                <div class="section-tab" onclick="goToSection(5)">5. HF ACTIVE STATUS</div>
+                <div class="section-tab" onclick="goToSection(6)">6. COHERENCY CHECK</div>
+                <div class="section-tab" onclick="goToSection(7)">7. CASE MANAGEMENT</div>
+                <div class="section-tab" onclick="goToSection(8)">8. EPI STRATIFICATION</div>
+                <div class="section-tab" onclick="goToSection(9)">9. OTHER DETERMINANTS</div>
+                <div class="section-tab" onclick="goToSection(10)">10. INTERVENTION PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(11)">11. INTERVENTION COHERENCY</div>
+                <div class="section-tab" onclick="goToSection(12)">12. INTERVENTION GEOSPATIAL</div>
+                <div class="section-tab" onclick="goToSection(13)">13. STOCKOUT PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(14)">14. STOCKOUT COHERENCY</div>
+                <div class="section-tab" onclick="goToSection(15)">15. STOCKOUT GEOSPATIAL</div>
+                <div class="section-tab" onclick="goToSection(16)">16. OTHER INTERVENTIONS</div>
+                <div class="section-tab" onclick="goToSection(17)">17. TARGETING PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(18)">18. DECISION TREES & MIXES</div>
+                <div class="section-tab" onclick="goToSection(19)">19. PRIORITIZATION</div>
+                <div class="section-tab" onclick="goToSection(20)">20. SNT COSTING</div>
             </div>
             <div class="progress-bar">
-                <div class="progress-fill" id="progressFill" style="width: 16.67%"></div>
+                <div class="progress-fill" id="progressFill" style="width: 5%"></div>
             </div>
-            <div class="progress-text" id="progressText">Section 1 of 6 | DATA PREPROCESSING</div>
+            <div class="progress-text" id="progressText">Section 1 of 20 | DATA EXTRACTION</div>
         </div>
 
         <!-- Main Content -->
         <div class="content-card">
             
-            <!-- SECTION 1: Data Preprocessing (28 Cards) -->
+            <!-- SECTION 1: Data Extraction -->
             <div class="section-content active" id="section1">
                 <div class="section-title-bar">
                     <span class="section-number">1</span>
-                    <span class="section-title">DATA PREPROCESSING</span>
+                    <span class="section-title">DATA EXTRACTION</span>
                 </div>
                 <div class="data-flow-intro">
-                    <p>Prepare and organize your raw data files. These tools help you combine, rename, clean, and standardize data before analysis.</p>
+                    <p>Extract raw data from DHIS2 and external sources. These tools help you pull routine health data, intervention data, stockout information, and environmental datasets.</p>
                 </div>
                 <div class="cards-grid">
                     <div class="card" onclick="openModal('modal-1-1')">
                         <div class="card-header">
                             <div class="card-number">1</div>
-                            <div class="card-title">COMBINE FILES</div>
-                            <div class="card-description">Merge multiple data files into a single consolidated dataset</div>
+                            <div class="card-title">DHIS2 EPI ROUTINE DATA</div>
+                            <div class="card-description">Extract epidemiological routine data from DHIS2 system</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-2')">
                         <div class="card-header">
                             <div class="card-number">2</div>
-                            <div class="card-title">RENAME VARIABLES</div>
-                            <div class="card-description">Batch rename columns with standardized naming conventions</div>
+                            <div class="card-title">DHIS2 INTERVENTION DATA</div>
+                            <div class="card-description">Extract routine intervention data from DHIS2 system</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-3')">
                         <div class="card-header">
                             <div class="card-number">3</div>
-                            <div class="card-title">CREATE NEW VARIABLES</div>
-                            <div class="card-description">Compute new variables by adding or subtracting columns</div>
+                            <div class="card-title">DHIS2 STOCKOUT DATA</div>
+                            <div class="card-description">Extract routine stockout data from DHIS2 system</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-4')">
                         <div class="card-header">
                             <div class="card-number">4</div>
-                            <div class="card-title">SORT COLUMNS</div>
-                            <div class="card-description">Reorder and sort columns alphabetically or custom order</div>
+                            <div class="card-title">POPULATION DATA</div>
+                            <div class="card-description">Extract and import population datasets by admin level</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-5')">
                         <div class="card-header">
                             <div class="card-number">5</div>
-                            <div class="card-title">SPLIT PERIOD COLUMN</div>
-                            <div class="card-description">Split period column into separate year and month fields</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-6')">
-                        <div class="card-header">
-                            <div class="card-number">6</div>
-                            <div class="card-title">CREATE HFUID</div>
-                            <div class="card-description">Generate unique Health Facility UIDs for data linking</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-7')">
-                        <div class="card-header">
-                            <div class="card-number">7</div>
-                            <div class="card-title">CREATE REPORT COLUMN</div>
-                            <div class="card-description">Add reporting period and status columns to dataset</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-8')">
-                        <div class="card-header">
-                            <div class="card-number">8</div>
-                            <div class="card-title">CREATE YEAR-MONTH COLUMN</div>
-                            <div class="card-description">Combine year and month into single formatted column</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-9')">
-                        <div class="card-header">
-                            <div class="card-number">9</div>
-                            <div class="card-title">DIAGNOSTIC CHECK ON COLUMNS</div>
-                            <div class="card-description">Run diagnostic checks on data columns for issues</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-10')">
-                        <div class="card-header">
-                            <div class="card-number">10</div>
-                            <div class="card-title">COLUMN CONSISTENCY</div>
-                            <div class="card-description">Verify column consistency across multiple datasets</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-11')">
-                        <div class="card-header">
-                            <div class="card-number">11</div>
-                            <div class="card-title">OUTLIER DETECTION AND CORRECTION</div>
-                            <div class="card-description">Identify and handle statistical outliers in data</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-12')">
-                        <div class="card-header">
-                            <div class="card-number">12</div>
-                            <div class="card-title">FUZZY NAME MATCHING</div>
-                            <div class="card-description">Match routine and population data using fuzzy logic</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-13')">
-                        <div class="card-header">
-                            <div class="card-number">13</div>
-                            <div class="card-title">MERGE FILES</div>
-                            <div class="card-description">Merge multiple files based on common key columns</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-14')">
-                        <div class="card-header">
-                            <div class="card-number">14</div>
-                            <div class="card-title">MERGE ROUTINE, POPULATION & SHAPEFILE</div>
-                            <div class="card-description">Combine routine, population and shapefile key data</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-15')">
-                        <div class="card-header">
-                            <div class="card-number">15</div>
-                            <div class="card-title">DATA TYPE CONVERSION</div>
-                            <div class="card-description">Convert column data types (numeric, text, date)</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-16')">
-                        <div class="card-header">
-                            <div class="card-number">16</div>
-                            <div class="card-title">FINAL DATABASE</div>
-                            <div class="card-description">Generate the final consolidated database for analysis</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-17')">
-                        <div class="card-header">
-                            <div class="card-number">17</div>
-                            <div class="card-title">PLACEHOLDER 17</div>
-                            <div class="card-description">Description for tool 17</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-18')">
-                        <div class="card-header">
-                            <div class="card-number">18</div>
-                            <div class="card-title">PLACEHOLDER 18</div>
-                            <div class="card-description">Description for tool 18</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-19')">
-                        <div class="card-header">
-                            <div class="card-number">19</div>
-                            <div class="card-title">PLACEHOLDER 19</div>
-                            <div class="card-description">Description for tool 19</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-20')">
-                        <div class="card-header">
-                            <div class="card-number">20</div>
-                            <div class="card-title">PLACEHOLDER 20</div>
-                            <div class="card-description">Description for tool 20</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-21')">
-                        <div class="card-header">
-                            <div class="card-number">21</div>
-                            <div class="card-title">PLACEHOLDER 21</div>
-                            <div class="card-description">Description for tool 21</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-22')">
-                        <div class="card-header">
-                            <div class="card-number">22</div>
-                            <div class="card-title">PLACEHOLDER 22</div>
-                            <div class="card-description">Description for tool 22</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-23')">
-                        <div class="card-header">
-                            <div class="card-number">23</div>
-                            <div class="card-title">PLACEHOLDER 23</div>
-                            <div class="card-description">Description for tool 23</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-24')">
-                        <div class="card-header">
-                            <div class="card-number">24</div>
-                            <div class="card-title">PLACEHOLDER 24</div>
-                            <div class="card-description">Description for tool 24</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-25')">
-                        <div class="card-header">
-                            <div class="card-number">25</div>
-                            <div class="card-title">PLACEHOLDER 25</div>
-                            <div class="card-description">Description for tool 25</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-26')">
-                        <div class="card-header">
-                            <div class="card-number">26</div>
-                            <div class="card-title">PLACEHOLDER 26</div>
-                            <div class="card-description">Description for tool 26</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-27')">
-                        <div class="card-header">
-                            <div class="card-number">27</div>
-                            <div class="card-title">PLACEHOLDER 27</div>
-                            <div class="card-description">Description for tool 27</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-1-28')">
-                        <div class="card-header">
-                            <div class="card-number">28</div>
-                            <div class="card-title">PLACEHOLDER 28</div>
-                            <div class="card-description">Description for tool 28</div>
+                            <div class="card-title">RAINFALL DATA</div>
+                            <div class="card-description">Extract rainfall and climate data from external sources</div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn back-btn" disabled>
-                        ← BACK
-                    </button>
-                    <span class="nav-indicator">Section 1 of 6</span>
-                    <button class="nav-btn next-btn" onclick="nextSection()">
-                        NEXT →
-                    </button>
+                    <button class="nav-btn back-btn" disabled>← BACK</button>
+                    <span class="nav-indicator">Section 1 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
                 </div>
             </div>
 
-            <!-- SECTION 2: EPI Stratification -->
+            <!-- SECTION 2: Data Transformation -->
             <div class="section-content" id="section2">
                 <div class="section-title-bar">
                     <span class="section-number">2</span>
-                    <span class="section-title">EPI STRATIFICATION</span>
+                    <span class="section-title">DATA TRANSFORMATION</span>
                 </div>
                 <div class="data-flow-intro">
-                    <p>Stratify and analyze epidemiological indicators. These tools help calculate rates, coverage, and key metrics.</p>
+                    <p>Transform and reshape your datasets. These tools help with format conversions, name matching, coordinate cleaning, and data restructuring.</p>
                 </div>
                 <div class="cards-grid">
                     <div class="card" onclick="openModal('modal-2-1')">
                         <div class="card-header">
                             <div class="card-number">1</div>
-                            <div class="card-title">REPORTING STATUS</div>
-                            <div class="card-description">Track facility reporting status over time</div>
+                            <div class="card-title">ADMIN LEVEL UNIQUENESS</div>
+                            <div class="card-description">Verify unique identifiers across admin hierarchy levels</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-2')">
                         <div class="card-header">
                             <div class="card-number">2</div>
-                            <div class="card-title">REPORTING RATE</div>
-                            <div class="card-description">Calculate reporting completeness rates</div>
+                            <div class="card-title">WIDE TO LONG FORMAT</div>
+                            <div class="card-description">Convert wide format data to long format structure</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-3')">
                         <div class="card-header">
                             <div class="card-number">3</div>
-                            <div class="card-title">TEST POSITIVITY RATE</div>
-                            <div class="card-description">Calculate malaria test positivity rates</div>
+                            <div class="card-title">LONG TO WIDE FORMAT</div>
+                            <div class="card-description">Convert long format data to wide format structure</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-4')">
                         <div class="card-header">
                             <div class="card-number">4</div>
-                            <div class="card-title">CRUDE INCIDENCE</div>
-                            <div class="card-description">Calculate crude malaria incidence rates</div>
+                            <div class="card-title">POPULATION NAME CLEANING</div>
+                            <div class="card-description">Standardize and clean population data naming conventions</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-5')">
                         <div class="card-header">
                             <div class="card-number">5</div>
-                            <div class="card-title">RAINFALL</div>
-                            <div class="card-description">Analyze rainfall patterns and correlations</div>
+                            <div class="card-title">FUZZY MATCH: POPULATION & ROUTINE</div>
+                            <div class="card-description">Match population data to routine data using fuzzy logic</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-6')">
                         <div class="card-header">
                             <div class="card-number">6</div>
-                            <div class="card-title">POPULATION</div>
-                            <div class="card-description">Population data analysis and projections</div>
+                            <div class="card-title">SHAPEFILE NAME CLEANING</div>
+                            <div class="card-description">Standardize and clean shapefile naming conventions</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-7')">
                         <div class="card-header">
                             <div class="card-number">7</div>
-                            <div class="card-title">ACCESS TO CARE</div>
-                            <div class="card-description">Analyze healthcare access metrics</div>
+                            <div class="card-title">FUZZY MATCH: SHAPEFILE & ROUTINE</div>
+                            <div class="card-description">Match shapefile data to routine data using fuzzy logic</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-8')">
                         <div class="card-header">
                             <div class="card-number">8</div>
-                            <div class="card-title">MORTALITY INDICATORS</div>
-                            <div class="card-description">Calculate mortality and case fatality rates</div>
+                            <div class="card-title">FUZZY MATCH: MFL & DHIS2</div>
+                            <div class="card-description">Match Master Facility List to DHIS2 facility data</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-9')">
+                        <div class="card-header">
+                            <div class="card-number">9</div>
+                            <div class="card-title">HF COORDINATE CLEANING</div>
+                            <div class="card-description">Clean and validate health facility coordinate columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-10')">
+                        <div class="card-header">
+                            <div class="card-number">10</div>
+                            <div class="card-title">COORDINATE CONVERSION</div>
+                            <div class="card-description">Convert any coordinate format to Longitude/Latitude</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-11')">
+                        <div class="card-header">
+                            <div class="card-number">11</div>
+                            <div class="card-title">COLUMN GROUPING TOOL</div>
+                            <div class="card-description">Group and organize columns by category or type</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-12')">
+                        <div class="card-header">
+                            <div class="card-number">12</div>
+                            <div class="card-title">JSON TO SHAPEFILE</div>
+                            <div class="card-description">Convert GeoJSON files to Shapefile format</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-13')">
+                        <div class="card-header">
+                            <div class="card-number">13</div>
+                            <div class="card-title">SHAPEFILE TO JSON</div>
+                            <div class="card-description">Convert Shapefile format to GeoJSON files</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-14')">
+                        <div class="card-header">
+                            <div class="card-number">14</div>
+                            <div class="card-title">SHAPEFILE BOUNDARY OVERLAY</div>
+                            <div class="card-description">Create or overlay higher admin unit boundaries</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-15')">
+                        <div class="card-header">
+                            <div class="card-number">15</div>
+                            <div class="card-title">PIVOT TABLE (SIMPLE)</div>
+                            <div class="card-description">Create basic pivot tables with single aggregation</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-16')">
+                        <div class="card-header">
+                            <div class="card-number">16</div>
+                            <div class="card-title">PIVOT TABLE (COMPLEX)</div>
+                            <div class="card-description">Create advanced pivot tables with multiple aggregations</div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn back-btn" onclick="prevSection()">
-                        ← BACK
-                    </button>
-                    <span class="nav-indicator">Section 2 of 6</span>
-                    <button class="nav-btn next-btn" onclick="nextSection()">
-                        NEXT →
-                    </button>
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 2 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
                 </div>
             </div>
 
-            <!-- SECTION 3: Data Transformation -->
+            <!-- SECTION 3: Data Preprocessing of Routine EPI Data -->
             <div class="section-content" id="section3">
                 <div class="section-title-bar">
                     <span class="section-number">3</span>
-                    <span class="section-title">DATA TRANSFORMATION</span>
+                    <span class="section-title">DATA PREPROCESSING OF ROUTINE EPI DATA</span>
                 </div>
                 <div class="data-flow-intro">
-                    <p>Reshape and aggregate your data. These tools help you pivot, merge, and restructure datasets for analysis.</p>
+                    <p>Prepare and clean routine epidemiological data. These tools help standardize, validate, and organize EPI data for analysis.</p>
                 </div>
                 <div class="cards-grid">
                     <div class="card" onclick="openModal('modal-3-1')">
                         <div class="card-header">
                             <div class="card-number">1</div>
-                            <div class="card-title">MERGE DATASETS</div>
-                            <div class="card-description">Join datasets using common keys</div>
+                            <div class="card-title">COMBINE EPI FILES</div>
+                            <div class="card-description">Merge multiple EPI data files into consolidated dataset</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-3-2')">
                         <div class="card-header">
                             <div class="card-number">2</div>
-                            <div class="card-title">PIVOT TABLE</div>
-                            <div class="card-description">Reshape data from long to wide format</div>
+                            <div class="card-title">RENAME EPI VARIABLES</div>
+                            <div class="card-description">Standardize EPI column names and conventions</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-3-3')">
                         <div class="card-header">
                             <div class="card-number">3</div>
-                            <div class="card-title">UNPIVOT DATA</div>
-                            <div class="card-description">Transform wide format to long format</div>
+                            <div class="card-title">CREATE EPI INDICATORS</div>
+                            <div class="card-description">Compute derived EPI variables and indicators</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-3-4')">
                         <div class="card-header">
                             <div class="card-number">4</div>
-                            <div class="card-title">AGGREGATE DATA</div>
-                            <div class="card-description">Sum, average, count by grouping variables</div>
+                            <div class="card-title">SORT EPI COLUMNS</div>
+                            <div class="card-description">Reorder EPI columns by category or custom order</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-3-5')">
                         <div class="card-header">
                             <div class="card-number">5</div>
-                            <div class="card-title">SPLIT COLUMNS</div>
-                            <div class="card-description">Split one column into multiple columns</div>
+                            <div class="card-title">SPLIT PERIOD COLUMN</div>
+                            <div class="card-description">Split period into separate year and month fields</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-3-6')">
                         <div class="card-header">
                             <div class="card-number">6</div>
-                            <div class="card-title">CONCATENATE COLUMNS</div>
-                            <div class="card-description">Combine multiple columns into one</div>
+                            <div class="card-title">CREATE FACILITY UID</div>
+                            <div class="card-description">Generate unique Health Facility identifiers</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-3-7')">
                         <div class="card-header">
                             <div class="card-number">7</div>
-                            <div class="card-title">TRANSPOSE DATA</div>
-                            <div class="card-description">Swap rows and columns in dataset</div>
+                            <div class="card-title">CREATE REPORT COLUMN</div>
+                            <div class="card-description">Add reporting period and status columns</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-3-8')">
                         <div class="card-header">
                             <div class="card-number">8</div>
-                            <div class="card-title">HIERARCHICAL ROLLUP</div>
-                            <div class="card-description">Aggregate by admin levels (district, chiefdom)</div>
+                            <div class="card-title">CREATE YEAR-MONTH COLUMN</div>
+                            <div class="card-description">Combine year and month into formatted column</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-3-9')">
+                        <div class="card-header">
+                            <div class="card-number">9</div>
+                            <div class="card-title">DIAGNOSTIC CHECK</div>
+                            <div class="card-description">Run diagnostic checks on EPI data columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-3-10')">
+                        <div class="card-header">
+                            <div class="card-number">10</div>
+                            <div class="card-title">COLUMN CONSISTENCY CHECK</div>
+                            <div class="card-description">Verify column consistency across datasets</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-3-11')">
+                        <div class="card-header">
+                            <div class="card-number">11</div>
+                            <div class="card-title">OUTLIER DETECTION</div>
+                            <div class="card-description">Identify and handle statistical outliers</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-3-12')">
+                        <div class="card-header">
+                            <div class="card-number">12</div>
+                            <div class="card-title">MERGE EPI FILES</div>
+                            <div class="card-description">Merge EPI files based on common key columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-3-13')">
+                        <div class="card-header">
+                            <div class="card-number">13</div>
+                            <div class="card-title">MERGE WITH POPULATION & SHAPEFILE</div>
+                            <div class="card-description">Combine EPI data with population and shapefile</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-3-14')">
+                        <div class="card-header">
+                            <div class="card-number">14</div>
+                            <div class="card-title">DATA TYPE CONVERSION</div>
+                            <div class="card-description">Convert column data types appropriately</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-3-15')">
+                        <div class="card-header">
+                            <div class="card-number">15</div>
+                            <div class="card-title">FINAL EPI DATABASE</div>
+                            <div class="card-description">Generate final consolidated EPI database</div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn back-btn" onclick="prevSection()">
-                        ← BACK
-                    </button>
-                    <span class="nav-indicator">Section 3 of 6</span>
-                    <button class="nav-btn next-btn" onclick="nextSection()">
-                        NEXT →
-                    </button>
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 3 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
                 </div>
             </div>
 
-            <!-- SECTION 4: Analysis Tools -->
+            <!-- SECTION 4: Analysis on Reporting -->
             <div class="section-content" id="section4">
                 <div class="section-title-bar">
                     <span class="section-number">4</span>
-                    <span class="section-title">ANALYSIS TOOLS</span>
+                    <span class="section-title">ANALYSIS ON REPORTING</span>
                 </div>
                 <div class="data-flow-intro">
-                    <p>Perform statistical analysis and calculations. These tools help you analyze trends, compute indicators, and generate insights.</p>
+                    <p>Analyze reporting completeness and patterns. These tools help track facility reporting status and calculate reporting rates.</p>
                 </div>
                 <div class="cards-grid">
                     <div class="card" onclick="openModal('modal-4-1')">
                         <div class="card-header">
                             <div class="card-number">1</div>
-                            <div class="card-title">INCIDENCE CALCULATION</div>
-                            <div class="card-description">Calculate malaria incidence rates</div>
+                            <div class="card-title">REPORTING MATRIX</div>
+                            <div class="card-description">Generate comprehensive reporting matrix by facility and period</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-4-2')">
                         <div class="card-header">
                             <div class="card-number">2</div>
-                            <div class="card-title">TREND ANALYSIS</div>
-                            <div class="card-description">Analyze temporal trends and patterns</div>
+                            <div class="card-title">HF REPORTING STATUS</div>
+                            <div class="card-description">Track health facility reporting status over time</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-4-3')">
                         <div class="card-header">
                             <div class="card-number">3</div>
-                            <div class="card-title">SEASONALITY ANALYSIS</div>
-                            <div class="card-description">Identify seasonal patterns in data</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-4-4')">
-                        <div class="card-header">
-                            <div class="card-number">4</div>
-                            <div class="card-title">COVERAGE INDICATORS</div>
-                            <div class="card-description">Calculate intervention coverage rates</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-4-5')">
-                        <div class="card-header">
-                            <div class="card-number">5</div>
-                            <div class="card-title">MORTALITY RATES</div>
-                            <div class="card-description">Compute case fatality and mortality rates</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-4-6')">
-                        <div class="card-header">
-                            <div class="card-number">6</div>
-                            <div class="card-title">PRIORITY CLASSIFICATION</div>
-                            <div class="card-description">Classify areas by burden and risk</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-4-7')">
-                        <div class="card-header">
-                            <div class="card-number">7</div>
-                            <div class="card-title">COMPARATIVE ANALYSIS</div>
-                            <div class="card-description">Compare performance across regions</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-4-8')">
-                        <div class="card-header">
-                            <div class="card-number">8</div>
-                            <div class="card-title">STATISTICAL SUMMARY</div>
-                            <div class="card-description">Generate descriptive statistics</div>
+                            <div class="card-title">REPORTING RATE BY ADMIN LEVEL</div>
+                            <div class="card-description">Calculate reporting completeness rates at admin levels</div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn back-btn" onclick="prevSection()">
-                        ← BACK
-                    </button>
-                    <span class="nav-indicator">Section 4 of 6</span>
-                    <button class="nav-btn next-btn" onclick="nextSection()">
-                        NEXT →
-                    </button>
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 4 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
                 </div>
             </div>
 
-            <!-- SECTION 5: Visualization -->
+            <!-- SECTION 5: Active and Inactive Status -->
             <div class="section-content" id="section5">
                 <div class="section-title-bar">
                     <span class="section-number">5</span>
-                    <span class="section-title">VISUALIZATION</span>
+                    <span class="section-title">ACTIVE & INACTIVE STATUS OF HEALTH FACILITIES</span>
                 </div>
                 <div class="data-flow-intro">
-                    <p>Create charts, maps, and dashboards. These tools help you visualize data for presentations and decision-making.</p>
+                    <p>Determine operational status of health facilities. This tool identifies active and inactive facilities based on reporting patterns.</p>
                 </div>
                 <div class="cards-grid">
                     <div class="card" onclick="openModal('modal-5-1')">
                         <div class="card-header">
                             <div class="card-number">1</div>
-                            <div class="card-title">CHOROPLETH MAPS</div>
-                            <div class="card-description">Create thematic maps by admin level</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-5-2')">
-                        <div class="card-header">
-                            <div class="card-number">2</div>
-                            <div class="card-title">TIME SERIES CHARTS</div>
-                            <div class="card-description">Plot trends over time periods</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-5-3')">
-                        <div class="card-header">
-                            <div class="card-number">3</div>
-                            <div class="card-title">BAR CHARTS</div>
-                            <div class="card-description">Create comparative bar visualizations</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-5-4')">
-                        <div class="card-header">
-                            <div class="card-number">4</div>
-                            <div class="card-title">PIE/DONUT CHARTS</div>
-                            <div class="card-description">Show proportional breakdowns</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-5-5')">
-                        <div class="card-header">
-                            <div class="card-number">5</div>
-                            <div class="card-title">HEATMAPS</div>
-                            <div class="card-description">Visualize data density and patterns</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-5-6')">
-                        <div class="card-header">
-                            <div class="card-number">6</div>
-                            <div class="card-title">SCATTER PLOTS</div>
-                            <div class="card-description">Show relationships between variables</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-5-7')">
-                        <div class="card-header">
-                            <div class="card-number">7</div>
-                            <div class="card-title">DASHBOARD BUILDER</div>
-                            <div class="card-description">Create interactive dashboards</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-5-8')">
-                        <div class="card-header">
-                            <div class="card-number">8</div>
-                            <div class="card-title">INFOGRAPHICS</div>
-                            <div class="card-description">Generate visual summaries</div>
+                            <div class="card-title">HF ACTIVE/INACTIVE STATUS</div>
+                            <div class="card-description">Classify health facilities as active or inactive based on reporting</div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn back-btn" onclick="prevSection()">
-                        ← BACK
-                    </button>
-                    <span class="nav-indicator">Section 5 of 6</span>
-                    <button class="nav-btn next-btn" onclick="nextSection()">
-                        NEXT →
-                    </button>
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 5 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
                 </div>
             </div>
 
-            <!-- SECTION 6: Export & Reporting -->
+            <!-- SECTION 6: Coherency Check and Stripplots -->
             <div class="section-content" id="section6">
                 <div class="section-title-bar">
                     <span class="section-number">6</span>
-                    <span class="section-title">EXPORT & REPORTING</span>
+                    <span class="section-title">COHERENCY CHECK & STRIPPLOTS</span>
                 </div>
                 <div class="data-flow-intro">
-                    <p>Export and share your results. These tools help you generate reports and export data in various formats.</p>
+                    <p>Validate data coherency and visualize distributions. This tool performs coherency checks and generates stripplot visualizations.</p>
                 </div>
                 <div class="cards-grid">
                     <div class="card" onclick="openModal('modal-6-1')">
                         <div class="card-header">
                             <div class="card-number">1</div>
-                            <div class="card-title">EXPORT TO EXCEL</div>
-                            <div class="card-description">Export formatted data to Excel files</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-6-2')">
-                        <div class="card-header">
-                            <div class="card-number">2</div>
-                            <div class="card-title">EXPORT TO CSV</div>
-                            <div class="card-description">Export data to CSV format</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-6-3')">
-                        <div class="card-header">
-                            <div class="card-number">3</div>
-                            <div class="card-title">PDF REPORT</div>
-                            <div class="card-description">Generate PDF analysis reports</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-6-4')">
-                        <div class="card-header">
-                            <div class="card-number">4</div>
-                            <div class="card-title">WORD DOCUMENT</div>
-                            <div class="card-description">Create formatted Word reports</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-6-5')">
-                        <div class="card-header">
-                            <div class="card-number">5</div>
-                            <div class="card-title">POWERPOINT EXPORT</div>
-                            <div class="card-description">Generate presentation slides</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-6-6')">
-                        <div class="card-header">
-                            <div class="card-number">6</div>
-                            <div class="card-title">DHIS2 EXPORT</div>
-                            <div class="card-description">Format data for DHIS2 import</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-6-7')">
-                        <div class="card-header">
-                            <div class="card-number">7</div>
-                            <div class="card-title">JSON EXPORT</div>
-                            <div class="card-description">Export data in JSON format</div>
-                        </div>
-                    </div>
-                    <div class="card" onclick="openModal('modal-6-8')">
-                        <div class="card-header">
-                            <div class="card-number">8</div>
-                            <div class="card-title">BATCH EXPORT</div>
-                            <div class="card-description">Export multiple files at once</div>
+                            <div class="card-title">COHERENCY CHECK & STRIPPLOTS</div>
+                            <div class="card-description">Run coherency validation and generate stripplot visualizations</div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn back-btn" onclick="prevSection()">
-                        ← BACK
-                    </button>
-                    <span class="nav-indicator">Section 6 of 6</span>
-                    <button class="nav-btn next-btn" disabled>
-                        COMPLETE ✓
-                    </button>
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 6 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 7: Case Management -->
+            <div class="section-content" id="section7">
+                <div class="section-title-bar">
+                    <span class="section-number">7</span>
+                    <span class="section-title">CASE MANAGEMENT</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Analyze malaria case management indicators. This tool calculates testing, treatment, and case management metrics.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-7-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">CASE MANAGEMENT ANALYSIS</div>
+                            <div class="card-description">Analyze testing, treatment, and case management indicators</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 7 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 8: EPI Stratification -->
+            <div class="section-content" id="section8">
+                <div class="section-title-bar">
+                    <span class="section-number">8</span>
+                    <span class="section-title">EPI STRATIFICATION</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Stratify and classify epidemiological data. These tools calculate incidence rates, test positivity, and risk classifications.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-8-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">POPULATION GEOSPATIAL</div>
+                            <div class="card-description">Geospatial analysis of population distribution</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-8-2')">
+                        <div class="card-header">
+                            <div class="card-number">2</div>
+                            <div class="card-title">TEST POSITIVITY RATE</div>
+                            <div class="card-description">Calculate malaria test positivity rates by area</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-8-3')">
+                        <div class="card-header">
+                            <div class="card-number">3</div>
+                            <div class="card-title">CRUDE INCIDENCE</div>
+                            <div class="card-description">Calculate crude malaria incidence rates</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-8-4')">
+                        <div class="card-header">
+                            <div class="card-number">4</div>
+                            <div class="card-title">ADJUSTED INCIDENCE (LEVEL 1)</div>
+                            <div class="card-description">Calculate first level adjusted incidence rates</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-8-5')">
+                        <div class="card-header">
+                            <div class="card-number">5</div>
+                            <div class="card-title">ADJUSTED INCIDENCE (LEVEL 2)</div>
+                            <div class="card-description">Calculate second level adjusted incidence rates</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-8-6')">
+                        <div class="card-header">
+                            <div class="card-number">6</div>
+                            <div class="card-title">ADJUSTED INCIDENCE (LEVEL 3)</div>
+                            <div class="card-description">Calculate third level adjusted incidence rates</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-8-7')">
+                        <div class="card-header">
+                            <div class="card-number">7</div>
+                            <div class="card-title">RISK CLASSIFICATION</div>
+                            <div class="card-description">Classify areas by malaria risk levels</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 8 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 9: Stratification of Other Determinants -->
+            <div class="section-content" id="section9">
+                <div class="section-title-bar">
+                    <span class="section-number">9</span>
+                    <span class="section-title">STRATIFICATION OF OTHER DETERMINANTS</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Analyze additional factors influencing malaria. These tools assess seasonality, SMC eligibility, and healthcare access.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-9-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">SEASONALITY ANALYSIS</div>
+                            <div class="card-description">Identify and analyze seasonal malaria patterns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-9-2')">
+                        <div class="card-header">
+                            <div class="card-number">2</div>
+                            <div class="card-title">SMC ELIGIBILITY</div>
+                            <div class="card-description">Determine Seasonal Malaria Chemoprevention eligibility</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-9-3')">
+                        <div class="card-header">
+                            <div class="card-number">3</div>
+                            <div class="card-title">POINT COORDINATES</div>
+                            <div class="card-description">Manage and analyze facility point coordinates</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-9-4')">
+                        <div class="card-header">
+                            <div class="card-number">4</div>
+                            <div class="card-title">ACCESS TO CARE</div>
+                            <div class="card-description">Analyze healthcare access and travel time metrics</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 9 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 10: Data Preprocessing of Routine Intervention Data -->
+            <div class="section-content" id="section10">
+                <div class="section-title-bar">
+                    <span class="section-number">10</span>
+                    <span class="section-title">DATA PREPROCESSING OF ROUTINE INTERVENTION DATA</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Prepare and clean routine intervention data. These tools standardize, validate, and organize intervention data for analysis.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-10-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">COMBINE INTERVENTION FILES</div>
+                            <div class="card-description">Merge multiple intervention data files</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-2')">
+                        <div class="card-header">
+                            <div class="card-number">2</div>
+                            <div class="card-title">RENAME INTERVENTION VARIABLES</div>
+                            <div class="card-description">Standardize intervention column names</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-3')">
+                        <div class="card-header">
+                            <div class="card-number">3</div>
+                            <div class="card-title">CREATE INTERVENTION INDICATORS</div>
+                            <div class="card-description">Compute derived intervention variables</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-4')">
+                        <div class="card-header">
+                            <div class="card-number">4</div>
+                            <div class="card-title">SORT INTERVENTION COLUMNS</div>
+                            <div class="card-description">Reorder intervention columns appropriately</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-5')">
+                        <div class="card-header">
+                            <div class="card-number">5</div>
+                            <div class="card-title">SPLIT PERIOD COLUMN</div>
+                            <div class="card-description">Split period into year and month fields</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-6')">
+                        <div class="card-header">
+                            <div class="card-number">6</div>
+                            <div class="card-title">CREATE FACILITY UID</div>
+                            <div class="card-description">Generate unique facility identifiers</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-7')">
+                        <div class="card-header">
+                            <div class="card-number">7</div>
+                            <div class="card-title">CREATE REPORT COLUMN</div>
+                            <div class="card-description">Add reporting period and status columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-8')">
+                        <div class="card-header">
+                            <div class="card-number">8</div>
+                            <div class="card-title">CREATE YEAR-MONTH COLUMN</div>
+                            <div class="card-description">Combine year and month into formatted column</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-9')">
+                        <div class="card-header">
+                            <div class="card-number">9</div>
+                            <div class="card-title">DIAGNOSTIC CHECK</div>
+                            <div class="card-description">Run diagnostic checks on intervention data</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-10')">
+                        <div class="card-header">
+                            <div class="card-number">10</div>
+                            <div class="card-title">COLUMN CONSISTENCY CHECK</div>
+                            <div class="card-description">Verify column consistency across datasets</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-11')">
+                        <div class="card-header">
+                            <div class="card-number">11</div>
+                            <div class="card-title">OUTLIER DETECTION</div>
+                            <div class="card-description">Identify and handle statistical outliers</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-12')">
+                        <div class="card-header">
+                            <div class="card-number">12</div>
+                            <div class="card-title">MERGE INTERVENTION FILES</div>
+                            <div class="card-description">Merge files based on common key columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-13')">
+                        <div class="card-header">
+                            <div class="card-number">13</div>
+                            <div class="card-title">MERGE WITH POPULATION & SHAPEFILE</div>
+                            <div class="card-description">Combine with population and shapefile data</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-14')">
+                        <div class="card-header">
+                            <div class="card-number">14</div>
+                            <div class="card-title">DATA TYPE CONVERSION</div>
+                            <div class="card-description">Convert column data types appropriately</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-10-15')">
+                        <div class="card-header">
+                            <div class="card-number">15</div>
+                            <div class="card-title">FINAL INTERVENTION DATABASE</div>
+                            <div class="card-description">Generate final consolidated intervention database</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 10 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 11: Coherency Check - Intervention -->
+            <div class="section-content" id="section11">
+                <div class="section-title-bar">
+                    <span class="section-number">11</span>
+                    <span class="section-title">COHERENCY CHECK & STRIPPLOTS (INTERVENTION)</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Validate intervention data coherency. This tool performs coherency checks and generates stripplot visualizations for intervention data.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-11-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">INTERVENTION COHERENCY CHECK</div>
+                            <div class="card-description">Run coherency validation on intervention data</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 11 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 12: Geospatial Analysis - Intervention -->
+            <div class="section-content" id="section12">
+                <div class="section-title-bar">
+                    <span class="section-number">12</span>
+                    <span class="section-title">GEOSPATIAL ANALYSIS OF ROUTINE INTERVENTION DATA</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Perform geospatial analysis on intervention data. This tool generates maps and spatial analysis of intervention coverage.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-12-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">INTERVENTION GEOSPATIAL ANALYSIS</div>
+                            <div class="card-description">Generate geospatial analysis and maps for intervention data</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 12 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 13: Data Preprocessing of Routine Stockout Data -->
+            <div class="section-content" id="section13">
+                <div class="section-title-bar">
+                    <span class="section-number">13</span>
+                    <span class="section-title">DATA PREPROCESSING OF ROUTINE STOCKOUT DATA</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Prepare and clean routine stockout data. These tools standardize, validate, and organize stockout data for analysis.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-13-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">COMBINE STOCKOUT FILES</div>
+                            <div class="card-description">Merge multiple stockout data files</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-2')">
+                        <div class="card-header">
+                            <div class="card-number">2</div>
+                            <div class="card-title">RENAME STOCKOUT VARIABLES</div>
+                            <div class="card-description">Standardize stockout column names</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-3')">
+                        <div class="card-header">
+                            <div class="card-number">3</div>
+                            <div class="card-title">CREATE STOCKOUT INDICATORS</div>
+                            <div class="card-description">Compute derived stockout variables</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-4')">
+                        <div class="card-header">
+                            <div class="card-number">4</div>
+                            <div class="card-title">SORT STOCKOUT COLUMNS</div>
+                            <div class="card-description">Reorder stockout columns appropriately</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-5')">
+                        <div class="card-header">
+                            <div class="card-number">5</div>
+                            <div class="card-title">SPLIT PERIOD COLUMN</div>
+                            <div class="card-description">Split period into year and month fields</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-6')">
+                        <div class="card-header">
+                            <div class="card-number">6</div>
+                            <div class="card-title">CREATE FACILITY UID</div>
+                            <div class="card-description">Generate unique facility identifiers</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-7')">
+                        <div class="card-header">
+                            <div class="card-number">7</div>
+                            <div class="card-title">CREATE REPORT COLUMN</div>
+                            <div class="card-description">Add reporting period and status columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-8')">
+                        <div class="card-header">
+                            <div class="card-number">8</div>
+                            <div class="card-title">CREATE YEAR-MONTH COLUMN</div>
+                            <div class="card-description">Combine year and month into formatted column</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-9')">
+                        <div class="card-header">
+                            <div class="card-number">9</div>
+                            <div class="card-title">DIAGNOSTIC CHECK</div>
+                            <div class="card-description">Run diagnostic checks on stockout data</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-10')">
+                        <div class="card-header">
+                            <div class="card-number">10</div>
+                            <div class="card-title">COLUMN CONSISTENCY CHECK</div>
+                            <div class="card-description">Verify column consistency across datasets</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-11')">
+                        <div class="card-header">
+                            <div class="card-number">11</div>
+                            <div class="card-title">OUTLIER DETECTION</div>
+                            <div class="card-description">Identify and handle statistical outliers</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-12')">
+                        <div class="card-header">
+                            <div class="card-number">12</div>
+                            <div class="card-title">MERGE STOCKOUT FILES</div>
+                            <div class="card-description">Merge files based on common key columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-13')">
+                        <div class="card-header">
+                            <div class="card-number">13</div>
+                            <div class="card-title">MERGE WITH POPULATION & SHAPEFILE</div>
+                            <div class="card-description">Combine with population and shapefile data</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-14')">
+                        <div class="card-header">
+                            <div class="card-number">14</div>
+                            <div class="card-title">DATA TYPE CONVERSION</div>
+                            <div class="card-description">Convert column data types appropriately</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-13-15')">
+                        <div class="card-header">
+                            <div class="card-number">15</div>
+                            <div class="card-title">FINAL STOCKOUT DATABASE</div>
+                            <div class="card-description">Generate final consolidated stockout database</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 13 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 14: Coherency Check - Stockout -->
+            <div class="section-content" id="section14">
+                <div class="section-title-bar">
+                    <span class="section-number">14</span>
+                    <span class="section-title">COHERENCY CHECK & STRIPPLOTS (STOCKOUT)</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Validate stockout data coherency. This tool performs coherency checks and generates stripplot visualizations for stockout data.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-14-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">STOCKOUT COHERENCY CHECK</div>
+                            <div class="card-description">Run coherency validation on stockout data</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 14 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 15: Geospatial Analysis - Stockout -->
+            <div class="section-content" id="section15">
+                <div class="section-title-bar">
+                    <span class="section-number">15</span>
+                    <span class="section-title">GEOSPATIAL ANALYSIS OF ROUTINE STOCKOUT DATA</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Perform geospatial analysis on stockout data. This tool generates maps and spatial analysis of stockout patterns.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-15-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">STOCKOUT GEOSPATIAL ANALYSIS</div>
+                            <div class="card-description">Generate geospatial analysis and maps for stockout data</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 15 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 16: Geospatial Analysis of Other Interventions -->
+            <div class="section-content" id="section16">
+                <div class="section-title-bar">
+                    <span class="section-number">16</span>
+                    <span class="section-title">GEOSPATIAL ANALYSIS OF OTHER INTERVENTIONS</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Perform geospatial analysis on other intervention types. This tool analyzes coverage and distribution of various interventions.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-16-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">OTHER INTERVENTIONS GEOSPATIAL</div>
+                            <div class="card-description">Analyze other interventions and coverages geospatially</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 16 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 17: Data Preprocessing for Intervention Targeting -->
+            <div class="section-content" id="section17">
+                <div class="section-title-bar">
+                    <span class="section-number">17</span>
+                    <span class="section-title">DATA PREPROCESSING FOR INTERVENTION TARGETING</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Prepare data for intervention targeting analysis. This tool consolidates and formats data for targeting decisions.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-17-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">TARGETING DATA PREPARATION</div>
+                            <div class="card-description">Prepare consolidated dataset for intervention targeting</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 17 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 18: Decision Trees, Intervention Targeting and Mixes -->
+            <div class="section-content" id="section18">
+                <div class="section-title-bar">
+                    <span class="section-number">18</span>
+                    <span class="section-title">DECISION TREES, INTERVENTION TARGETING & MIXES</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Design intervention packages and targeting strategies. This tool helps determine optimal intervention mixes by area.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-18-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">INTERVENTION TARGETING & MIXES</div>
+                            <div class="card-description">Design decision trees and intervention mix strategies</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 18 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 19: Decision Tree for Prioritization -->
+            <div class="section-content" id="section19">
+                <div class="section-title-bar">
+                    <span class="section-number">19</span>
+                    <span class="section-title">DECISION TREE FOR PRIORITIZATION</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Prioritize areas for intervention implementation. This tool applies decision logic to rank areas by priority.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-19-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">PRIORITIZATION DECISION TREE</div>
+                            <div class="card-description">Apply decision tree logic for area prioritization</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 19 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT →</button>
+                </div>
+            </div>
+
+            <!-- SECTION 20: SNT Costing Tool -->
+            <div class="section-content" id="section20">
+                <div class="section-title-bar">
+                    <span class="section-number">20</span>
+                    <span class="section-title">SNT COSTING TOOL</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Calculate costs for intervention packages. This tool estimates resource requirements based on targeting decisions.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-20-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">SNT COSTING CALCULATOR</div>
+                            <div class="card-description">Calculate intervention costs and resource requirements</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">← BACK</button>
+                    <span class="nav-indicator">Section 20 of 20</span>
+                    <button class="nav-btn next-btn" disabled>COMPLETE ✓</button>
                 </div>
             </div>
 
@@ -1551,26 +1950,17 @@
             </div>
             <div class="modal-body">
                 <div class="iframe-container">
-                    <!-- Loading Spinner -->
                     <div class="loading-container" id="loadingContainer" style="display: none;">
                         <div class="loading-spinner"></div>
                         <div class="loading-text">Loading tool...</div>
                     </div>
-                    
-                    <!-- Iframe for regular tools -->
                     <iframe id="modalIframe" src="" style="display: none;"></iframe>
-                    
-                    <!-- Streamlit Notice (for apps that can't be embedded) -->
                     <div class="streamlit-notice" id="streamlitNotice">
                         <div class="notice-icon" id="noticeIcon">🌧️</div>
                         <h3 id="noticeTitle">External Application</h3>
                         <p id="noticeText">This tool is hosted on an external platform that requires opening in a new browser tab for the best experience.</p>
-                        <button class="open-btn" onclick="openInNewTab()">
-                            🚀 OPEN APPLICATION
-                        </button>
+                        <button class="open-btn" onclick="openInNewTab()">🚀 OPEN APPLICATION</button>
                     </div>
-                    
-                    <!-- Placeholder for unconfigured tools -->
                     <div class="placeholder-message" id="modalPlaceholder">
                         <div class="placeholder-icon" id="placeholderIcon">📎</div>
                         <h3 id="placeholderTitle">Tool Name</h3>
@@ -1588,19 +1978,15 @@
         let deferredPrompt;
         let newWorker;
 
-        // Register Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
                     .then(registration => {
                         console.log('ServiceWorker registered:', registration.scope);
-                        
-                        // Check for updates
                         registration.addEventListener('updatefound', () => {
                             newWorker = registration.installing;
                             newWorker.addEventListener('statechange', () => {
                                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    // New content available, show update notification
                                     document.getElementById('updateNotification').style.display = 'block';
                                 }
                             });
@@ -1612,7 +1998,6 @@
             });
         }
 
-        // Handle app update
         function updateApp() {
             if (newWorker) {
                 newWorker.postMessage({ type: 'SKIP_WAITING' });
@@ -1620,18 +2005,14 @@
             window.location.reload();
         }
 
-        // PWA Install Prompt
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            
-            // Show install button immediately
             document.getElementById('pwaInstallBtn').style.display = 'block';
         });
 
         function installPWA() {
             const btn = document.getElementById('pwaInstallBtn');
-            
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
@@ -1645,7 +2026,6 @@
             }
         }
 
-        // Check if already installed (running as PWA)
         if (window.matchMedia('(display-mode: standalone)').matches) {
             const btn = document.getElementById('pwaInstallBtn');
             btn.style.display = 'block';
@@ -1653,7 +2033,6 @@
             btn.classList.add('installed');
         }
 
-        // Detect when app is installed
         window.addEventListener('appinstalled', () => {
             console.log('PWA installed');
             const btn = document.getElementById('pwaInstallBtn');
@@ -1666,191 +2045,307 @@
         // SECTION CONFIGURATION
         // ============================================
         let currentSection = 1;
-        const totalSections = 6;
+        const totalSections = 20;
         let currentToolUrl = '';
 
         const sectionNames = {
-            1: "DATA PREPROCESSING",
-            2: "EPI STRATIFICATION",
-            3: "DATA TRANSFORMATION",
-            4: "ANALYSIS TOOLS",
-            5: "VISUALIZATION",
-            6: "EXPORT & REPORTING"
+            1: "DATA EXTRACTION",
+            2: "DATA TRANSFORMATION",
+            3: "ROUTINE EPI PREPROCESSING",
+            4: "REPORTING ANALYSIS",
+            5: "HF ACTIVE STATUS",
+            6: "COHERENCY CHECK",
+            7: "CASE MANAGEMENT",
+            8: "EPI STRATIFICATION",
+            9: "OTHER DETERMINANTS",
+            10: "INTERVENTION PREPROCESSING",
+            11: "INTERVENTION COHERENCY",
+            12: "INTERVENTION GEOSPATIAL",
+            13: "STOCKOUT PREPROCESSING",
+            14: "STOCKOUT COHERENCY",
+            15: "STOCKOUT GEOSPATIAL",
+            16: "OTHER INTERVENTIONS",
+            17: "TARGETING PREPROCESSING",
+            18: "DECISION TREES & MIXES",
+            19: "PRIORITIZATION",
+            20: "SNT COSTING"
         };
 
         // ============================================
         // URL CONFIGURATION - ADD YOUR URLS HERE
-        // Format: "section-card": "url"
         // ============================================
         const toolUrls = {
-            // Section 1: Data Preprocessing (28 cards)
-            "1-1": "https://mohamedsillahkanu.github.io/combine-files/",
-            "1-2": "https://mohamedsillahkanu.github.io/rename-variables/",
-            "1-3": "https://mohamedsillahkanu.github.io/create-new-variables/",
-            "1-4": "https://mohamedsillahkanu.github.io/sort/",
-            "1-5": "https://mohamedsillahkanu.github.io/split-period-column/",
-            "1-6": "https://mohamedsillahkanu.github.io/hfuid/",
-            "1-7": "https://mohamedsillahkanu.github.io/report-column/",
-            "1-8": "https://mohamedsillahkanu.github.io/year-month-combiner/",
-            "1-9": "https://mohamedsillahkanu.github.io/diagnostic-tool/",
-            "1-10": "https://mohamedsillahkanu.github.io/consistent-column-checker/",
-            "1-11": "https://mohamedsillahkanu.github.io/outlier/",
-            "1-12": "https://mohamedsillahkanu.github.io/fuzzy-name-routinedata-population/",
-            "1-13": "https://mohamedsillahkanu.github.io/file-merger/",
-            "1-14": "https://mohamedsillahkanu.github.io/merge-pop-routine-shapefilekey/",
-            "1-15": "https://mohamedsillahkanu.github.io/data-type/",
-            "1-16": "https://mohamedsillahkanu.github.io/final-database/",
-            "1-17": "",
-            "1-18": "",
-            "1-19": "",
-            "1-20": "",
-            "1-21": "",
-            "1-22": "",
-            "1-23": "",
-            "1-24": "",
-            "1-25": "",
-            "1-26": "",
-            "1-27": "",
-            "1-28": "",
+            // Section 1: Data Extraction
+            "1-1": "",
+            "1-2": "",
+            "1-3": "",
+            "1-4": "",
+            "1-5": "https://africa-rainfall-datasets.streamlit.app/?embed=true",
             
-            // Section 2: EPI Stratification
-            "2-1": "https://mohamedsillahkanu.github.io/heatmap/",
-            "2-2": "https://mohamedsillahkanu.github.io/reporting-rate/",
-            "2-3": "https://mohamedsillahkanu.github.io/tpr/",
-            "2-4": "https://mohamedsillahkanu.github.io/crude-incidence/",
-            "2-5": "https://africa-rainfall-datasets.streamlit.app/?embed=true",
-            "2-6": "https://gdp-dashboard-ddk50fm82fk.streamlit.app/?embed=true",
-            "2-7": "https://access-to-care.streamlit.app/?embed=true",
+            // Section 2: Data Transformation
+            "2-1": "",
+            "2-2": "",
+            "2-3": "",
+            "2-4": "",
+            "2-5": "https://mohamedsillahkanu.github.io/fuzzy-name-routinedata-population/",
+            "2-6": "",
+            "2-7": "",
             "2-8": "",
+            "2-9": "",
+            "2-10": "",
+            "2-11": "",
+            "2-12": "",
+            "2-13": "",
+            "2-14": "",
+            "2-15": "",
+            "2-16": "",
             
-            // Section 3: Data Transformation
-            "3-1": "",
-            "3-2": "",
-            "3-3": "",
-            "3-4": "",
-            "3-5": "",
-            "3-6": "",
-            "3-7": "",
-            "3-8": "",
+            // Section 3: Routine EPI Preprocessing
+            "3-1": "https://mohamedsillahkanu.github.io/combine-files/",
+            "3-2": "https://mohamedsillahkanu.github.io/rename-variables/",
+            "3-3": "https://mohamedsillahkanu.github.io/create-new-variables/",
+            "3-4": "https://mohamedsillahkanu.github.io/sort/",
+            "3-5": "https://mohamedsillahkanu.github.io/split-period-column/",
+            "3-6": "https://mohamedsillahkanu.github.io/hfuid/",
+            "3-7": "https://mohamedsillahkanu.github.io/report-column/",
+            "3-8": "https://mohamedsillahkanu.github.io/year-month-combiner/",
+            "3-9": "https://mohamedsillahkanu.github.io/diagnostic-tool/",
+            "3-10": "https://mohamedsillahkanu.github.io/consistent-column-checker/",
+            "3-11": "https://mohamedsillahkanu.github.io/outlier/",
+            "3-12": "https://mohamedsillahkanu.github.io/file-merger/",
+            "3-13": "https://mohamedsillahkanu.github.io/merge-pop-routine-shapefilekey/",
+            "3-14": "https://mohamedsillahkanu.github.io/data-type/",
+            "3-15": "https://mohamedsillahkanu.github.io/final-database/",
             
-            // Section 4: Analysis Tools
-            "4-1": "",
+            // Section 4: Reporting Analysis
+            "4-1": "https://mohamedsillahkanu.github.io/heatmap/",
             "4-2": "",
-            "4-3": "",
-            "4-4": "",
-            "4-5": "",
-            "4-6": "",
-            "4-7": "",
-            "4-8": "",
+            "4-3": "https://mohamedsillahkanu.github.io/reporting-rate/",
             
-            // Section 5: Visualization
+            // Section 5: HF Active Status
             "5-1": "",
-            "5-2": "",
-            "5-3": "",
-            "5-4": "",
-            "5-5": "",
-            "5-6": "",
-            "5-7": "",
-            "5-8": "",
             
-            // Section 6: Export & Reporting
+            // Section 6: Coherency Check
             "6-1": "",
-            "6-2": "",
-            "6-3": "",
-            "6-4": "",
-            "6-5": "",
-            "6-6": "",
-            "6-7": "",
-            "6-8": ""
+            
+            // Section 7: Case Management
+            "7-1": "",
+            
+            // Section 8: EPI Stratification
+            "8-1": "https://gdp-dashboard-ddk50fm82fk.streamlit.app/?embed=true",
+            "8-2": "https://mohamedsillahkanu.github.io/tpr/",
+            "8-3": "https://mohamedsillahkanu.github.io/crude-incidence/",
+            "8-4": "",
+            "8-5": "",
+            "8-6": "",
+            "8-7": "",
+            
+            // Section 9: Other Determinants
+            "9-1": "",
+            "9-2": "",
+            "9-3": "",
+            "9-4": "https://access-to-care.streamlit.app/?embed=true",
+            
+            // Section 10: Intervention Preprocessing
+            "10-1": "",
+            "10-2": "",
+            "10-3": "",
+            "10-4": "",
+            "10-5": "",
+            "10-6": "",
+            "10-7": "",
+            "10-8": "",
+            "10-9": "",
+            "10-10": "",
+            "10-11": "",
+            "10-12": "",
+            "10-13": "",
+            "10-14": "",
+            "10-15": "",
+            
+            // Section 11: Intervention Coherency
+            "11-1": "",
+            
+            // Section 12: Intervention Geospatial
+            "12-1": "",
+            
+            // Section 13: Stockout Preprocessing
+            "13-1": "",
+            "13-2": "",
+            "13-3": "",
+            "13-4": "",
+            "13-5": "",
+            "13-6": "",
+            "13-7": "",
+            "13-8": "",
+            "13-9": "",
+            "13-10": "",
+            "13-11": "",
+            "13-12": "",
+            "13-13": "",
+            "13-14": "",
+            "13-15": "",
+            
+            // Section 14: Stockout Coherency
+            "14-1": "",
+            
+            // Section 15: Stockout Geospatial
+            "15-1": "",
+            
+            // Section 16: Other Interventions
+            "16-1": "",
+            
+            // Section 17: Targeting Preprocessing
+            "17-1": "",
+            
+            // Section 18: Decision Trees & Mixes
+            "18-1": "",
+            
+            // Section 19: Prioritization
+            "19-1": "",
+            
+            // Section 20: SNT Costing
+            "20-1": ""
         };
 
-        // Tools that should show "Open in New Tab" button (Streamlit apps)
         const externalTools = {
-            "2-5": true,
-            "2-6": true,
-            "2-7": true
+            "1-5": true,
+            "8-1": true,
+            "9-4": true
         };
 
         const toolInfo = {
-            // Section 1: Data Preprocessing (28 cards)
-            "1-1": { title: "COMBINE FILES", icon: "📎" },
-            "1-2": { title: "RENAME VARIABLES", icon: "✏️" },
-            "1-3": { title: "CREATE NEW VARIABLES", icon: "➕" },
-            "1-4": { title: "SORT COLUMNS", icon: "↕️" },
-            "1-5": { title: "SPLIT PERIOD COLUMN", icon: "📅" },
-            "1-6": { title: "CREATE HFUID", icon: "🆔" },
-            "1-7": { title: "CREATE REPORT COLUMN", icon: "📋" },
-            "1-8": { title: "CREATE YEAR-MONTH COLUMN", icon: "📆" },
-            "1-9": { title: "DIAGNOSTIC CHECK ON COLUMNS", icon: "🔍" },
-            "1-10": { title: "COLUMN CONSISTENCY", icon: "✅" },
-            "1-11": { title: "OUTLIER DETECTION AND CORRECTION", icon: "⚠️" },
-            "1-12": { title: "FUZZY NAME MATCHING", icon: "🔗" },
-            "1-13": { title: "MERGE FILES", icon: "🔀" },
-            "1-14": { title: "MERGE ROUTINE, POPULATION & SHAPEFILE", icon: "🗺️" },
-            "1-15": { title: "DATA TYPE CONVERSION", icon: "🔢" },
-            "1-16": { title: "FINAL DATABASE", icon: "💾" },
-            "1-17": { title: "PLACEHOLDER 17", icon: "🔧" },
-            "1-18": { title: "PLACEHOLDER 18", icon: "🔧" },
-            "1-19": { title: "PLACEHOLDER 19", icon: "🔧" },
-            "1-20": { title: "PLACEHOLDER 20", icon: "🔧" },
-            "1-21": { title: "PLACEHOLDER 21", icon: "🔧" },
-            "1-22": { title: "PLACEHOLDER 22", icon: "🔧" },
-            "1-23": { title: "PLACEHOLDER 23", icon: "🔧" },
-            "1-24": { title: "PLACEHOLDER 24", icon: "🔧" },
-            "1-25": { title: "PLACEHOLDER 25", icon: "🔧" },
-            "1-26": { title: "PLACEHOLDER 26", icon: "🔧" },
-            "1-27": { title: "PLACEHOLDER 27", icon: "🔧" },
-            "1-28": { title: "PLACEHOLDER 28", icon: "🔧" },
+            // Section 1: Data Extraction
+            "1-1": { title: "DHIS2 EPI ROUTINE DATA", icon: "📊" },
+            "1-2": { title: "DHIS2 INTERVENTION DATA", icon: "💉" },
+            "1-3": { title: "DHIS2 STOCKOUT DATA", icon: "📦" },
+            "1-4": { title: "POPULATION DATA", icon: "👥" },
+            "1-5": { title: "RAINFALL DATA", icon: "🌧️" },
             
-            // Section 2: EPI Stratification
-            "2-1": { title: "REPORTING STATUS", icon: "📊" },
-            "2-2": { title: "REPORTING RATE", icon: "📈" },
-            "2-3": { title: "TEST POSITIVITY RATE", icon: "🧪" },
-            "2-4": { title: "CRUDE INCIDENCE", icon: "📉" },
-            "2-5": { title: "RAINFALL", icon: "🌧️" },
-            "2-6": { title: "POPULATION", icon: "👥" },
-            "2-7": { title: "ACCESS TO CARE", icon: "🏥" },
-            "2-8": { title: "MORTALITY INDICATORS", icon: "📋" },
+            // Section 2: Data Transformation
+            "2-1": { title: "ADMIN LEVEL UNIQUENESS", icon: "🔍" },
+            "2-2": { title: "WIDE TO LONG FORMAT", icon: "↕️" },
+            "2-3": { title: "LONG TO WIDE FORMAT", icon: "↔️" },
+            "2-4": { title: "POPULATION NAME CLEANING", icon: "✏️" },
+            "2-5": { title: "FUZZY MATCH: POPULATION & ROUTINE", icon: "🔗" },
+            "2-6": { title: "SHAPEFILE NAME CLEANING", icon: "🗺️" },
+            "2-7": { title: "FUZZY MATCH: SHAPEFILE & ROUTINE", icon: "🔗" },
+            "2-8": { title: "FUZZY MATCH: MFL & DHIS2", icon: "🏥" },
+            "2-9": { title: "HF COORDINATE CLEANING", icon: "📍" },
+            "2-10": { title: "COORDINATE CONVERSION", icon: "🧭" },
+            "2-11": { title: "COLUMN GROUPING TOOL", icon: "📑" },
+            "2-12": { title: "JSON TO SHAPEFILE", icon: "🔄" },
+            "2-13": { title: "SHAPEFILE TO JSON", icon: "🔄" },
+            "2-14": { title: "SHAPEFILE BOUNDARY OVERLAY", icon: "🗺️" },
+            "2-15": { title: "PIVOT TABLE (SIMPLE)", icon: "📊" },
+            "2-16": { title: "PIVOT TABLE (COMPLEX)", icon: "📈" },
             
-            // Section 3: Data Transformation
-            "3-1": { title: "MERGE DATASETS", icon: "🔗" },
-            "3-2": { title: "PIVOT TABLE", icon: "📊" },
-            "3-3": { title: "UNPIVOT DATA", icon: "📉" },
-            "3-4": { title: "AGGREGATE DATA", icon: "∑" },
-            "3-5": { title: "SPLIT COLUMNS", icon: "✂️" },
-            "3-6": { title: "CONCATENATE COLUMNS", icon: "🔗" },
-            "3-7": { title: "TRANSPOSE DATA", icon: "↔️" },
-            "3-8": { title: "HIERARCHICAL ROLLUP", icon: "🏛️" },
+            // Section 3: Routine EPI Preprocessing
+            "3-1": { title: "COMBINE EPI FILES", icon: "📎" },
+            "3-2": { title: "RENAME EPI VARIABLES", icon: "✏️" },
+            "3-3": { title: "CREATE EPI INDICATORS", icon: "➕" },
+            "3-4": { title: "SORT EPI COLUMNS", icon: "↕️" },
+            "3-5": { title: "SPLIT PERIOD COLUMN", icon: "📅" },
+            "3-6": { title: "CREATE FACILITY UID", icon: "🆔" },
+            "3-7": { title: "CREATE REPORT COLUMN", icon: "📋" },
+            "3-8": { title: "CREATE YEAR-MONTH COLUMN", icon: "📆" },
+            "3-9": { title: "DIAGNOSTIC CHECK", icon: "🔍" },
+            "3-10": { title: "COLUMN CONSISTENCY CHECK", icon: "✅" },
+            "3-11": { title: "OUTLIER DETECTION", icon: "⚠️" },
+            "3-12": { title: "MERGE EPI FILES", icon: "🔀" },
+            "3-13": { title: "MERGE WITH POPULATION & SHAPEFILE", icon: "🗺️" },
+            "3-14": { title: "DATA TYPE CONVERSION", icon: "🔢" },
+            "3-15": { title: "FINAL EPI DATABASE", icon: "💾" },
             
-            // Section 4: Analysis Tools
-            "4-1": { title: "INCIDENCE CALCULATION", icon: "📈" },
-            "4-2": { title: "TREND ANALYSIS", icon: "📉" },
-            "4-3": { title: "SEASONALITY ANALYSIS", icon: "🌡️" },
-            "4-4": { title: "COVERAGE INDICATORS", icon: "🎯" },
-            "4-5": { title: "MORTALITY RATES", icon: "📊" },
-            "4-6": { title: "PRIORITY CLASSIFICATION", icon: "🏆" },
-            "4-7": { title: "COMPARATIVE ANALYSIS", icon: "⚖️" },
-            "4-8": { title: "STATISTICAL SUMMARY", icon: "📐" },
+            // Section 4: Reporting Analysis
+            "4-1": { title: "REPORTING MATRIX", icon: "📊" },
+            "4-2": { title: "HF REPORTING STATUS", icon: "📈" },
+            "4-3": { title: "REPORTING RATE BY ADMIN LEVEL", icon: "📉" },
             
-            // Section 5: Visualization
-            "5-1": { title: "CHOROPLETH MAPS", icon: "🗺️" },
-            "5-2": { title: "TIME SERIES CHARTS", icon: "📈" },
-            "5-3": { title: "BAR CHARTS", icon: "📊" },
-            "5-4": { title: "PIE/DONUT CHARTS", icon: "🥧" },
-            "5-5": { title: "HEATMAPS", icon: "🔥" },
-            "5-6": { title: "SCATTER PLOTS", icon: "⚫" },
-            "5-7": { title: "DASHBOARD BUILDER", icon: "📱" },
-            "5-8": { title: "INFOGRAPHICS", icon: "🎨" },
+            // Section 5: HF Active Status
+            "5-1": { title: "HF ACTIVE/INACTIVE STATUS", icon: "🏥" },
             
-            // Section 6: Export & Reporting
-            "6-1": { title: "EXPORT TO EXCEL", icon: "📗" },
-            "6-2": { title: "EXPORT TO CSV", icon: "📄" },
-            "6-3": { title: "PDF REPORT", icon: "📕" },
-            "6-4": { title: "WORD DOCUMENT", icon: "📘" },
-            "6-5": { title: "POWERPOINT EXPORT", icon: "📙" },
-            "6-6": { title: "DHIS2 EXPORT", icon: "🔄" },
-            "6-7": { title: "JSON EXPORT", icon: "{ }" },
-            "6-8": { title: "BATCH EXPORT", icon: "📦" }
+            // Section 6: Coherency Check
+            "6-1": { title: "COHERENCY CHECK & STRIPPLOTS", icon: "📊" },
+            
+            // Section 7: Case Management
+            "7-1": { title: "CASE MANAGEMENT ANALYSIS", icon: "💊" },
+            
+            // Section 8: EPI Stratification
+            "8-1": { title: "POPULATION GEOSPATIAL", icon: "👥" },
+            "8-2": { title: "TEST POSITIVITY RATE", icon: "🧪" },
+            "8-3": { title: "CRUDE INCIDENCE", icon: "📉" },
+            "8-4": { title: "ADJUSTED INCIDENCE (LEVEL 1)", icon: "📈" },
+            "8-5": { title: "ADJUSTED INCIDENCE (LEVEL 2)", icon: "📈" },
+            "8-6": { title: "ADJUSTED INCIDENCE (LEVEL 3)", icon: "📈" },
+            "8-7": { title: "RISK CLASSIFICATION", icon: "⚠️" },
+            
+            // Section 9: Other Determinants
+            "9-1": { title: "SEASONALITY ANALYSIS", icon: "🌡️" },
+            "9-2": { title: "SMC ELIGIBILITY", icon: "💉" },
+            "9-3": { title: "POINT COORDINATES", icon: "📍" },
+            "9-4": { title: "ACCESS TO CARE", icon: "🏥" },
+            
+            // Section 10: Intervention Preprocessing
+            "10-1": { title: "COMBINE INTERVENTION FILES", icon: "📎" },
+            "10-2": { title: "RENAME INTERVENTION VARIABLES", icon: "✏️" },
+            "10-3": { title: "CREATE INTERVENTION INDICATORS", icon: "➕" },
+            "10-4": { title: "SORT INTERVENTION COLUMNS", icon: "↕️" },
+            "10-5": { title: "SPLIT PERIOD COLUMN", icon: "📅" },
+            "10-6": { title: "CREATE FACILITY UID", icon: "🆔" },
+            "10-7": { title: "CREATE REPORT COLUMN", icon: "📋" },
+            "10-8": { title: "CREATE YEAR-MONTH COLUMN", icon: "📆" },
+            "10-9": { title: "DIAGNOSTIC CHECK", icon: "🔍" },
+            "10-10": { title: "COLUMN CONSISTENCY CHECK", icon: "✅" },
+            "10-11": { title: "OUTLIER DETECTION", icon: "⚠️" },
+            "10-12": { title: "MERGE INTERVENTION FILES", icon: "🔀" },
+            "10-13": { title: "MERGE WITH POPULATION & SHAPEFILE", icon: "🗺️" },
+            "10-14": { title: "DATA TYPE CONVERSION", icon: "🔢" },
+            "10-15": { title: "FINAL INTERVENTION DATABASE", icon: "💾" },
+            
+            // Section 11: Intervention Coherency
+            "11-1": { title: "INTERVENTION COHERENCY CHECK", icon: "📊" },
+            
+            // Section 12: Intervention Geospatial
+            "12-1": { title: "INTERVENTION GEOSPATIAL ANALYSIS", icon: "🗺️" },
+            
+            // Section 13: Stockout Preprocessing
+            "13-1": { title: "COMBINE STOCKOUT FILES", icon: "📎" },
+            "13-2": { title: "RENAME STOCKOUT VARIABLES", icon: "✏️" },
+            "13-3": { title: "CREATE STOCKOUT INDICATORS", icon: "➕" },
+            "13-4": { title: "SORT STOCKOUT COLUMNS", icon: "↕️" },
+            "13-5": { title: "SPLIT PERIOD COLUMN", icon: "📅" },
+            "13-6": { title: "CREATE FACILITY UID", icon: "🆔" },
+            "13-7": { title: "CREATE REPORT COLUMN", icon: "📋" },
+            "13-8": { title: "CREATE YEAR-MONTH COLUMN", icon: "📆" },
+            "13-9": { title: "DIAGNOSTIC CHECK", icon: "🔍" },
+            "13-10": { title: "COLUMN CONSISTENCY CHECK", icon: "✅" },
+            "13-11": { title: "OUTLIER DETECTION", icon: "⚠️" },
+            "13-12": { title: "MERGE STOCKOUT FILES", icon: "🔀" },
+            "13-13": { title: "MERGE WITH POPULATION & SHAPEFILE", icon: "🗺️" },
+            "13-14": { title: "DATA TYPE CONVERSION", icon: "🔢" },
+            "13-15": { title: "FINAL STOCKOUT DATABASE", icon: "💾" },
+            
+            // Section 14: Stockout Coherency
+            "14-1": { title: "STOCKOUT COHERENCY CHECK", icon: "📊" },
+            
+            // Section 15: Stockout Geospatial
+            "15-1": { title: "STOCKOUT GEOSPATIAL ANALYSIS", icon: "🗺️" },
+            
+            // Section 16: Other Interventions
+            "16-1": { title: "OTHER INTERVENTIONS GEOSPATIAL", icon: "🗺️" },
+            
+            // Section 17: Targeting Preprocessing
+            "17-1": { title: "TARGETING DATA PREPARATION", icon: "🎯" },
+            
+            // Section 18: Decision Trees & Mixes
+            "18-1": { title: "INTERVENTION TARGETING & MIXES", icon: "🌳" },
+            
+            // Section 19: Prioritization
+            "19-1": { title: "PRIORITIZATION DECISION TREE", icon: "📋" },
+            
+            // Section 20: SNT Costing
+            "20-1": { title: "SNT COSTING CALCULATOR", icon: "💰" }
         };
 
         // ============================================
@@ -1858,7 +2353,6 @@
         // ============================================
         function goToSection(sectionNum) {
             if (sectionNum < 1 || sectionNum > totalSections) return;
-            
             currentSection = sectionNum;
             updateSectionDisplay();
         }
@@ -1878,26 +2372,17 @@
         }
 
         function updateSectionDisplay() {
-            // Hide all sections
             document.querySelectorAll('.section-content').forEach(section => {
                 section.classList.remove('active');
             });
-
-            // Show current section
             document.getElementById('section' + currentSection).classList.add('active');
-
-            // Update tabs
             document.querySelectorAll('.section-tab').forEach((tab, index) => {
                 tab.classList.toggle('active', index + 1 === currentSection);
             });
-
-            // Update progress bar
             const progress = (currentSection / totalSections) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
             document.getElementById('progressText').textContent = 
                 `Section ${currentSection} of ${totalSections} | ${sectionNames[currentSection]}`;
-
-            // Scroll to top of content
             document.querySelector('.content-card').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -1915,17 +2400,14 @@
             const url = toolUrls[toolKey];
             const info = toolInfo[toolKey];
 
-            // Store current URL for external opening
             currentToolUrl = url;
 
-            // Update modal header
             const cardNum = toolKey.split('-')[1];
             document.getElementById('modalNumber').textContent = cardNum;
             document.getElementById('modalTitleText').textContent = info.title;
             document.getElementById('placeholderIcon').textContent = info.icon;
-            document.getElementById('placeholderTitle').textContent = info.title + ' Tool';
+            document.getElementById('placeholderTitle').textContent = info.title;
 
-            // Reset all views
             iframe.style.display = 'none';
             placeholder.style.display = 'none';
             streamlitNotice.style.display = 'none';
@@ -1935,21 +2417,17 @@
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // Check if URL is configured
             if (!url || url.trim() === '') {
                 placeholder.style.display = 'flex';
                 return;
             }
 
-            // Show "Open in New Tab" button only for Streamlit apps
             if (externalTools[toolKey]) {
                 openExternalBtn.style.display = 'flex';
             }
 
-            // Show loading then load iframe
             loadingContainer.style.display = 'flex';
 
-            // Load iframe
             iframe.onload = function() {
                 loadingContainer.style.display = 'none';
                 iframe.style.display = 'block';
@@ -1957,7 +2435,6 @@
 
             iframe.onerror = function() {
                 loadingContainer.style.display = 'none';
-                // Show placeholder on error
                 placeholder.style.display = 'flex';
                 document.getElementById('placeholderText').textContent = 'This tool could not be loaded. Please try again later.';
             };
@@ -1974,7 +2451,6 @@
         function closeModal() {
             const modal = document.getElementById('dynamicModal');
             const iframe = document.getElementById('modalIframe');
-
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
             iframe.src = '';
@@ -1987,12 +2463,10 @@
             }
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
-            // Arrow key navigation between sections
             if (!document.querySelector('.modal.active')) {
                 if (event.key === 'ArrowRight') {
                     nextSection();
@@ -2002,7 +2476,6 @@
             }
         });
 
-        // Handle URL hash for direct section navigation
         function handleHashChange() {
             const hash = window.location.hash;
             if (hash.startsWith('#section')) {
