@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNT Automation Tools</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Subnational Tailoring - Streamlined Data Processing & Analysis for Malaria Control">
+    <meta name="theme-color" content="#004080">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SNT Tools">
+    <meta name="application-name" content="SNT Automation Tools">
+    <meta name="msapplication-TileColor" content="#004080">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./icons/icon-144.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-120.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./icons/icon-114.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./icons/icon-76.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./icons/icon-72.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./icons/icon-60.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./icons/icon-57.png">
+    <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#004080">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: 'Oswald', Arial, sans-serif;
+            color: #000000;
+            font-weight: 700;
+            padding: 20px;
+        }
+
+        .pwa-install-btn {
+            display: none;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid #ffffff;
+            font-family: 'Oswald', Arial, sans-serif;
+            letter-spacing: 0.5px;
+            animation: pulse-glow 2s ease-in-out infinite;
+            margin: 20px auto 0;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(40, 167, 69, 0.7); }
+        }
+
+        .pwa-install-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(40, 167, 69, 0.6);
+        }
+
+        .pwa-install-btn.installed {
+            background: linear-gradient(135deg, #004080 0%, #0056b3 100%);
+            box-shadow: 0 4px 15px rgba(0, 64, 128, 0.4);
+            animation: none;
+            cursor: default;
+        }
+
+        .pwa-install-btn.installed:hover {
+            transform: none;
+        }
+
+        .update-notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: #ffffff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-size: 14px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 25px 30px;
+            text-align: center;
+            margin-bottom: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .african-flags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .african-flags img {
+            height: 24px;
+            width: auto;
+            border-radius: 3px;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .african-flags img:hover {
+            transform: scale(1.4);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+
+        .logo-box {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-box img {
+            width: 100px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .page-header h3 {
+            margin: 12px 0 5px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .page-header .tagline {
+            margin: 0;
+            font-size: 10px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .page-header h1 {
+            margin: 20px 0 10px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .page-header .subtitle {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .section-nav-container {
+            background: #ffffff;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+        }
+
+        .section-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .section-tab {
+            padding: 6px 12px;
+            border: 2px solid #004080;
+            border-radius: 20px;
+            background: #f8f9fa;
+            color: #004080;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .section-tab:hover {
+            background: #e7f3ff;
+        }
+
+        .section-tab.active {
+            background: #004080;
+            color: #ffffff;
+        }
+
+        .progress-bar {
+            background: #f8f9fa;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid #004080;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #004080, #0056b3);
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #000000;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .content-card {
+            border: 4px double #004080;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .section-title-bar {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title-bar .section-number {
+            background: #ffffff;
+            color: #004080;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-title-bar .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .data-flow-intro {
+            background: #f8f9fa;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .data-flow-intro p {
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.8;
+        }
+
+        .section-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 64, 128, 0.2);
+            background: #e7f3ff;
+        }
+
+        .card-header {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #004080;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-description {
+            font-size: 10px;
+            opacity: 0.9;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            background: #004080;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', Arial, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 64, 128, 0.3);
+        }
+
+        .nav-btn:disabled {
+            background: #cccccc;
+            border-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .nav-btn.back-btn {
+            background: #ffffff;
+            color: #004080;
+        }
+
+        .nav-btn.back-btn:hover:not(:disabled) {
+            background: #e7f3ff;
+        }
+
+        .nav-indicator {
+            font-size: 14px;
+            font-weight: 700;
+            color: #004080;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 64, 128, 0.8);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .modal-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .modal-header .card-number {
+            margin-bottom: 0;
+        }
+
+        .modal-header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .open-external-btn {
+            background: #ffc107;
+            border: none;
+            color: #004080;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            font-weight: 700;
+            font-family: 'Oswald', Arial, sans-serif;
+            gap: 5px;
+        }
+
+        .open-external-btn:hover {
+            background: #ffca2c;
+            transform: scale(1.05);
+        }
+
+        .close-btn {
+            background: #ffffff;
+            border: none;
+            color: #004080;
+            font-size: 20px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-weight: 700;
+        }
+
+        .close-btn:hover {
+            background: #ffc107;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            flex-grow: 1;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .placeholder-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: #f8f9fa;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .placeholder-message .placeholder-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.6;
+            color: #004080;
+        }
+
+        .placeholder-message h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #004080;
+        }
+
+        .placeholder-message p {
+            font-size: 14px;
+            max-width: 450px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .placeholder-message code {
+            background: #e7f3ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #004080;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: #f8f9fa;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #e7f3ff;
+            border-top: 5px solid #004080;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            color: #004080;
+            font-weight: 700;
+        }
+
+        .streamlit-notice {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e7f3ff 100%);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .streamlit-notice .notice-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .streamlit-notice h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #004080;
+        }
+
+        .streamlit-notice p {
+            font-size: 14px;
+            max-width: 500px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .streamlit-notice .open-btn {
+            background: #004080;
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', Arial, sans-serif;
+        }
+
+        .streamlit-notice .open-btn:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 64, 128, 0.3);
+        }
+
+        .page-footer {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.7;
+            font-weight: 700;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .page-footer p {
+            margin: 6px 0 0;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        @media (max-width: 1200px) {
+            .cards-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .cards-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .page-header h1 { font-size: 22px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .card { min-height: 100px; }
+            .logo-row { flex-direction: column; gap: 15px; }
+            .section-tabs { gap: 4px; }
+            .section-tab { padding: 5px 8px; font-size: 9px; }
+            .nav-buttons { flex-direction: column; gap: 15px; }
+            .nav-btn { width: 100%; justify-content: center; }
+            .african-flags { gap: 5px; }
+            .african-flags img { height: 18px; }
+            .pwa-install-btn { font-size: 12px; padding: 10px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="update-notification" id="updateNotification">
+        New version available! 
+        <button onclick="updateApp()" style="margin-left: 10px; padding: 5px 15px; border: none; background: #fff; color: #28a745; border-radius: 4px; cursor: pointer; font-weight: 700;">UPDATE</button>
+    </div>
+
+    <div class="page-container">
+        <div class="page-header">
+            <div class="african-flags">
+                <img src="https://flagcdn.com/w40/dz.png" alt="Algeria" title="Algeria">
+                <img src="https://flagcdn.com/w40/ao.png" alt="Angola" title="Angola">
+                <img src="https://flagcdn.com/w40/bj.png" alt="Benin" title="Benin">
+                <img src="https://flagcdn.com/w40/bw.png" alt="Botswana" title="Botswana">
+                <img src="https://flagcdn.com/w40/bf.png" alt="Burkina Faso" title="Burkina Faso">
+                <img src="https://flagcdn.com/w40/bi.png" alt="Burundi" title="Burundi">
+                <img src="https://flagcdn.com/w40/cv.png" alt="Cabo Verde" title="Cabo Verde">
+                <img src="https://flagcdn.com/w40/cm.png" alt="Cameroon" title="Cameroon">
+                <img src="https://flagcdn.com/w40/cf.png" alt="Central African Republic" title="Central African Republic">
+                <img src="https://flagcdn.com/w40/td.png" alt="Chad" title="Chad">
+                <img src="https://flagcdn.com/w40/km.png" alt="Comoros" title="Comoros">
+                <img src="https://flagcdn.com/w40/cg.png" alt="Congo" title="Congo">
+                <img src="https://flagcdn.com/w40/cd.png" alt="DR Congo" title="DR Congo">
+                <img src="https://flagcdn.com/w40/ci.png" alt="Côte d'Ivoire" title="Côte d'Ivoire">
+                <img src="https://flagcdn.com/w40/dj.png" alt="Djibouti" title="Djibouti">
+                <img src="https://flagcdn.com/w40/eg.png" alt="Egypt" title="Egypt">
+                <img src="https://flagcdn.com/w40/gq.png" alt="Equatorial Guinea" title="Equatorial Guinea">
+                <img src="https://flagcdn.com/w40/er.png" alt="Eritrea" title="Eritrea">
+                <img src="https://flagcdn.com/w40/sz.png" alt="Eswatini" title="Eswatini">
+                <img src="https://flagcdn.com/w40/et.png" alt="Ethiopia" title="Ethiopia">
+                <img src="https://flagcdn.com/w40/ga.png" alt="Gabon" title="Gabon">
+                <img src="https://flagcdn.com/w40/gm.png" alt="Gambia" title="Gambia">
+                <img src="https://flagcdn.com/w40/gh.png" alt="Ghana" title="Ghana">
+                <img src="https://flagcdn.com/w40/gn.png" alt="Guinea" title="Guinea">
+                <img src="https://flagcdn.com/w40/gw.png" alt="Guinea-Bissau" title="Guinea-Bissau">
+                <img src="https://flagcdn.com/w40/ke.png" alt="Kenya" title="Kenya">
+                <img src="https://flagcdn.com/w40/ls.png" alt="Lesotho" title="Lesotho">
+                <img src="https://flagcdn.com/w40/lr.png" alt="Liberia" title="Liberia">
+                <img src="https://flagcdn.com/w40/ly.png" alt="Libya" title="Libya">
+                <img src="https://flagcdn.com/w40/mg.png" alt="Madagascar" title="Madagascar">
+                <img src="https://flagcdn.com/w40/mw.png" alt="Malawi" title="Malawi">
+                <img src="https://flagcdn.com/w40/ml.png" alt="Mali" title="Mali">
+                <img src="https://flagcdn.com/w40/mr.png" alt="Mauritania" title="Mauritania">
+                <img src="https://flagcdn.com/w40/mu.png" alt="Mauritius" title="Mauritius">
+                <img src="https://flagcdn.com/w40/ma.png" alt="Morocco" title="Morocco">
+                <img src="https://flagcdn.com/w40/mz.png" alt="Mozambique" title="Mozambique">
+                <img src="https://flagcdn.com/w40/na.png" alt="Namibia" title="Namibia">
+                <img src="https://flagcdn.com/w40/ne.png" alt="Niger" title="Niger">
+                <img src="https://flagcdn.com/w40/ng.png" alt="Nigeria" title="Nigeria">
+                <img src="https://flagcdn.com/w40/rw.png" alt="Rwanda" title="Rwanda">
+                <img src="https://flagcdn.com/w40/st.png" alt="São Tomé and Príncipe" title="São Tomé and Príncipe">
+                <img src="https://flagcdn.com/w40/sn.png" alt="Senegal" title="Senegal">
+                <img src="https://flagcdn.com/w40/sc.png" alt="Seychelles" title="Seychelles">
+                <img src="https://flagcdn.com/w40/sl.png" alt="Sierra Leone" title="Sierra Leone">
+                <img src="https://flagcdn.com/w40/so.png" alt="Somalia" title="Somalia">
+                <img src="https://flagcdn.com/w40/za.png" alt="South Africa" title="South Africa">
+                <img src="https://flagcdn.com/w40/ss.png" alt="South Sudan" title="South Sudan">
+                <img src="https://flagcdn.com/w40/sd.png" alt="Sudan" title="Sudan">
+                <img src="https://flagcdn.com/w40/tz.png" alt="Tanzania" title="Tanzania">
+                <img src="https://flagcdn.com/w40/tg.png" alt="Togo" title="Togo">
+                <img src="https://flagcdn.com/w40/tn.png" alt="Tunisia" title="Tunisia">
+                <img src="https://flagcdn.com/w40/ug.png" alt="Uganda" title="Uganda">
+                <img src="https://flagcdn.com/w40/zm.png" alt="Zambia" title="Zambia">
+                <img src="https://flagcdn.com/w40/zw.png" alt="Zimbabwe" title="Zimbabwe">
+            </div>
+
+            <div class="logo-row">
+                <div class="logo-box">
+                    <img src="https://github.com/mohamedsillahkanu/gdp-dashboard-2/raw/6c7463b0d5c3be150aafae695a4bcbbd8aeb1499/ICF-SL.jpg" alt="ICF-SL Logo">
+                </div>
+            </div>
+            <h3>Informatics Consultancy Firm-Sierra Leone<br>(ICF-SL)</h3>
+            <p class="tagline"><em>Driving Data-Driven Solutions for Health and Development</em></p>
+            <h1>SNT AUTOMATION TOOLS</h1>
+            <p class="subtitle">Subnational Tailoring - Streamlined Data Processing & Analysis</p>
+            
+            <div class="pwa-install-btn" id="pwaInstallBtn" onclick="installPWA()">INSTALL APP</div>
+        </div>
+
+        <div class="section-nav-container">
+            <div class="section-tabs">
+                <div class="section-tab active" onclick="goToSection(1)">1. DATA EXTRACTION</div>
+                <div class="section-tab" onclick="goToSection(2)">2. DATA TRANSFORMATION</div>
+                <div class="section-tab" onclick="goToSection(3)">3. ROUTINE EPI PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(4)">4. REPORTING ANALYSIS</div>
+                <div class="section-tab" onclick="goToSection(5)">5. HF ACTIVE STATUS</div>
+                <div class="section-tab" onclick="goToSection(6)">6. COHERENCY CHECK</div>
+                <div class="section-tab" onclick="goToSection(7)">7. CASE MANAGEMENT</div>
+                <div class="section-tab" onclick="goToSection(8)">8. EPI STRATIFICATION</div>
+                <div class="section-tab" onclick="goToSection(9)">9. OTHER DETERMINANTS</div>
+                <div class="section-tab" onclick="goToSection(10)">10. INTERVENTION PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(11)">11. INTERVENTION COHERENCY</div>
+                <div class="section-tab" onclick="goToSection(12)">12. INTERVENTION GEOSPATIAL</div>
+                <div class="section-tab" onclick="goToSection(13)">13. STOCKOUT PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(14)">14. STOCKOUT COHERENCY</div>
+                <div class="section-tab" onclick="goToSection(15)">15. STOCKOUT GEOSPATIAL</div>
+                <div class="section-tab" onclick="goToSection(16)">16. OTHER INTERVENTIONS</div>
+                <div class="section-tab" onclick="goToSection(17)">17. TARGETING PREPROCESSING</div>
+                <div class="section-tab" onclick="goToSection(18)">18. DECISION TREES & MIXES</div>
+                <div class="section-tab" onclick="goToSection(19)">19. PRIORITIZATION</div>
+                <div class="section-tab" onclick="goToSection(20)">20. SNT COSTING</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 5%"></div>
+            </div>
+            <div class="progress-text" id="progressText">Section 1 of 20 | DATA EXTRACTION</div>
+        </div>
+
+        <div class="content-card">
+            <!-- SECTION 1 -->
+            <div class="section-content active" id="section1">
+                <div class="section-title-bar">
+                    <span class="section-number">1</span>
+                    <span class="section-title">DATA EXTRACTION</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Extract raw data from DHIS2 and external sources. These tools help you pull routine health data, intervention data, stockout information, and environmental datasets.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-1-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">EXTRACT DHIS2 ROUTINE DATA</div>
+                            <div class="card-description">Extract epi, intervention and stock data from DHIS2</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-1-2')">
+                        <div class="card-header">
+                            <div class="card-number">2</div>
+                            <div class="card-title">POPULATION DATA</div>
+                            <div class="card-description">Extract population datasets from World Population</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-1-3')">
+                        <div class="card-header">
+                            <div class="card-number">3</div>
+                            <div class="card-title">RAINFALL DATA</div>
+                            <div class="card-description">Extract rainfall and climate data from CHIRPS</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" disabled>BACK</button>
+                    <span class="nav-indicator">Section 1 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT</button>
+                </div>
+            </div>
+
+            <!-- SECTION 2 -->
+            <div class="section-content" id="section2">
+                <div class="section-title-bar">
+                    <span class="section-number">2</span>
+                    <span class="section-title">DATA TRANSFORMATION</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Transform and reshape your datasets. These tools help with format conversions, name matching, coordinate cleaning, and data restructuring.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-2-1')">
+                        <div class="card-header">
+                            <div class="card-number">1</div>
+                            <div class="card-title">ADMIN LEVEL HIERARCHY</div>
+                            <div class="card-description">Verify unique identifiers across admin hierarchy levels</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-2')">
+                        <div class="card-header">
+                            <div class="card-number">2</div>
+                            <div class="card-title">WIDE TO LONG FORMAT</div>
+                            <div class="card-description">Convert wide format data to long format structure</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-3')">
+                        <div class="card-header">
+                            <div class="card-number">3</div>
+                            <div class="card-title">LONG TO WIDE FORMAT</div>
+                            <div class="card-description">Convert long format data to wide format structure</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-4')">
+                        <div class="card-header">
+                            <div class="card-number">4</div>
+                            <div class="card-title">FUZZY MATCH: POPULATION & ROUTINE</div>
+                            <div class="card-description">Match population data to routine data using fuzzy logic</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-5')">
+                        <div class="card-header">
+                            <div class="card-number">5</div>
+                            <div class="card-title">FUZZY MATCH: SHAPEFILE & ROUTINE</div>
+                            <div class="card-description">Match shapefile data to routine data using fuzzy logic</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-6')">
+                        <div class="card-header">
+                            <div class="card-number">6</div>
+                            <div class="card-title">FUZZY MATCH: MFL & DHIS2</div>
+                            <div class="card-description">Match Master Facility List to DHIS2 facility data</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-7')">
+                        <div class="card-header">
+                            <div class="card-number">7</div>
+                            <div class="card-title">HF COORDINATE CLEANING</div>
+                            <div class="card-description">Clean and validate health facility coordinate columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-8')">
+                        <div class="card-header">
+                            <div class="card-number">8</div>
+                            <div class="card-title">COORDINATE CONVERSION</div>
+                            <div class="card-description">Convert any coordinate format to Longitude/Latitude</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-9')">
+                        <div class="card-header">
+                            <div class="card-number">9</div>
+                            <div class="card-title">COLUMN GROUPING TOOL</div>
+                            <div class="card-description">Group and organize columns by category or type</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-10')">
+                        <div class="card-header">
+                            <div class="card-number">10</div>
+                            <div class="card-title">JSON TO SHAPEFILE</div>
+                            <div class="card-description">Convert GeoJSON files to Shapefile format</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-11')">
+                        <div class="card-header">
+                            <div class="card-number">11</div>
+                            <div class="card-title">SHAPEFILE TO JSON</div>
+                            <div class="card-description">Convert Shapefile format to GeoJSON files</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-2-12')">
+                        <div class="card-header">
+                            <div class="card-number">12</div>
+                            <div class="card-title">SHAPEFILE BOUNDARY OVERLAY</div>
+                            <div class="card-description">Create or overlay higher admin unit boundaries</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">BACK</button>
+                    <span class="nav-indicator">Section 2 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT</button>
+                </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <div class="section-content" id="section3">
+                <div class="section-title-bar">
+                    <span class="section-number">3</span>
+                    <span class="section-title">DATA PREPROCESSING OF ROUTINE EPI DATA</span>
+                </div>
+                <div class="data-flow-intro">
+                    <p>Prepare and clean routine epidemiological data. These tools help standardize, validate, and organize EPI data for analysis.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-3-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">COMBINE EPI FILES</div><div class="card-description">Merge multiple EPI data files into consolidated dataset</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-2')"><div class="card-header"><div class="card-number">2</div><div class="card-title">RENAME EPI VARIABLES</div><div class="card-description">Standardize EPI column names and conventions</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-3')"><div class="card-header"><div class="card-number">3</div><div class="card-title">CREATE EPI INDICATORS</div><div class="card-description">Compute derived EPI variables and indicators</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-4')"><div class="card-header"><div class="card-number">4</div><div class="card-title">SORT EPI COLUMNS</div><div class="card-description">Reorder EPI columns by category or custom order</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-5')"><div class="card-header"><div class="card-number">5</div><div class="card-title">SPLIT PERIOD COLUMN</div><div class="card-description">Split period into separate year and month fields</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-6')"><div class="card-header"><div class="card-number">6</div><div class="card-title">CREATE FACILITY UID</div><div class="card-description">Generate unique Health Facility identifiers</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-7')"><div class="card-header"><div class="card-number">7</div><div class="card-title">CREATE REPORT COLUMN</div><div class="card-description">Add reporting period and status columns</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-8')"><div class="card-header"><div class="card-number">8</div><div class="card-title">CREATE YEAR-MONTH COLUMN</div><div class="card-description">Combine year and month into formatted column</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-9')"><div class="card-header"><div class="card-number">9</div><div class="card-title">DIAGNOSTIC CHECK</div><div class="card-description">Run diagnostic checks on EPI data columns</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-10')"><div class="card-header"><div class="card-number">10</div><div class="card-title">COLUMN CONSISTENCY CHECK</div><div class="card-description">Verify column consistency across datasets</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-11')"><div class="card-header"><div class="card-number">11</div><div class="card-title">OUTLIER DETECTION</div><div class="card-description">Identify and handle statistical outliers</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-12')"><div class="card-header"><div class="card-number">12</div><div class="card-title">MERGE EPI FILES</div><div class="card-description">Merge EPI files based on common key columns</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-13')"><div class="card-header"><div class="card-number">13</div><div class="card-title">MERGE WITH POPULATION & SHAPEFILE</div><div class="card-description">Combine EPI data with population and shapefile</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-14')"><div class="card-header"><div class="card-number">14</div><div class="card-title">DATA TYPE CONVERSION</div><div class="card-description">Convert column data types appropriately</div></div></div>
+                    <div class="card" onclick="openModal('modal-3-15')"><div class="card-header"><div class="card-number">15</div><div class="card-title">FINAL EPI DATABASE</div><div class="card-description">Generate final consolidated EPI database</div></div></div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn back-btn" onclick="prevSection()">BACK</button>
+                    <span class="nav-indicator">Section 3 of 20</span>
+                    <button class="nav-btn next-btn" onclick="nextSection()">NEXT</button>
+                </div>
+            </div>
+
+            <!-- SECTIONS 4-20: Similar structure -->
+            <div class="section-content" id="section4">
+                <div class="section-title-bar"><span class="section-number">4</span><span class="section-title">ANALYSIS ON REPORTING</span></div>
+                <div class="data-flow-intro"><p>Analyze reporting completeness and patterns.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-4-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">REPORTING MATRIX</div><div class="card-description">Generate reporting matrix by facility and period</div></div></div>
+                    <div class="card" onclick="openModal('modal-4-2')"><div class="card-header"><div class="card-number">2</div><div class="card-title">HF REPORTING STATUS</div><div class="card-description">Track health facility reporting status</div></div></div>
+                    <div class="card" onclick="openModal('modal-4-3')"><div class="card-header"><div class="card-number">3</div><div class="card-title">REPORTING RATE BY ADMIN LEVEL</div><div class="card-description">Calculate reporting rates at admin levels</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 4 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section5">
+                <div class="section-title-bar"><span class="section-number">5</span><span class="section-title">ACTIVE & INACTIVE STATUS OF HEALTH FACILITIES</span></div>
+                <div class="data-flow-intro"><p>Determine operational status of health facilities.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-5-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">HF ACTIVE/INACTIVE STATUS</div><div class="card-description">Classify facilities as active or inactive</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 5 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section6">
+                <div class="section-title-bar"><span class="section-number">6</span><span class="section-title">COHERENCY CHECK & STRIPPLOTS</span></div>
+                <div class="data-flow-intro"><p>Validate data coherency and visualize distributions.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-6-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">COHERENCY CHECK & STRIPPLOTS</div><div class="card-description">Run coherency validation and stripplots</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 6 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section7">
+                <div class="section-title-bar"><span class="section-number">7</span><span class="section-title">CASE MANAGEMENT</span></div>
+                <div class="data-flow-intro"><p>Analyze malaria case management indicators.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-7-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">CASE MANAGEMENT ANALYSIS</div><div class="card-description">Analyze testing and treatment indicators</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 7 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section8">
+                <div class="section-title-bar"><span class="section-number">8</span><span class="section-title">EPI STRATIFICATION</span></div>
+                <div class="data-flow-intro"><p>Stratify and classify epidemiological data.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-8-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">POPULATION GEOSPATIAL</div><div class="card-description">Geospatial analysis of population</div></div></div>
+                    <div class="card" onclick="openModal('modal-8-2')"><div class="card-header"><div class="card-number">2</div><div class="card-title">TEST POSITIVITY RATE</div><div class="card-description">Calculate test positivity rates</div></div></div>
+                    <div class="card" onclick="openModal('modal-8-3')"><div class="card-header"><div class="card-number">3</div><div class="card-title">CRUDE INCIDENCE</div><div class="card-description">Calculate crude incidence rates</div></div></div>
+                    <div class="card" onclick="openModal('modal-8-4')"><div class="card-header"><div class="card-number">4</div><div class="card-title">ADJUSTED INCIDENCE (LEVEL 1)</div><div class="card-description">First level adjusted incidence</div></div></div>
+                    <div class="card" onclick="openModal('modal-8-5')"><div class="card-header"><div class="card-number">5</div><div class="card-title">ADJUSTED INCIDENCE (LEVEL 2)</div><div class="card-description">Second level adjusted incidence</div></div></div>
+                    <div class="card" onclick="openModal('modal-8-6')"><div class="card-header"><div class="card-number">6</div><div class="card-title">ADJUSTED INCIDENCE (LEVEL 3)</div><div class="card-description">Third level adjusted incidence</div></div></div>
+                    <div class="card" onclick="openModal('modal-8-7')"><div class="card-header"><div class="card-number">7</div><div class="card-title">RISK CLASSIFICATION</div><div class="card-description">Classify areas by risk levels</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 8 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section9">
+                <div class="section-title-bar"><span class="section-number">9</span><span class="section-title">STRATIFICATION OF OTHER DETERMINANTS</span></div>
+                <div class="data-flow-intro"><p>Analyze additional factors influencing malaria.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-9-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">SEASONALITY ANALYSIS</div><div class="card-description">Identify seasonal patterns</div></div></div>
+                    <div class="card" onclick="openModal('modal-9-2')"><div class="card-header"><div class="card-number">2</div><div class="card-title">SMC ELIGIBILITY</div><div class="card-description">Determine SMC eligibility</div></div></div>
+                    <div class="card" onclick="openModal('modal-9-3')"><div class="card-header"><div class="card-number">3</div><div class="card-title">POINT COORDINATES</div><div class="card-description">Manage facility coordinates</div></div></div>
+                    <div class="card" onclick="openModal('modal-9-4')"><div class="card-header"><div class="card-number">4</div><div class="card-title">ACCESS TO CARE</div><div class="card-description">Analyze healthcare access</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 9 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section10">
+                <div class="section-title-bar"><span class="section-number">10</span><span class="section-title">DATA PREPROCESSING OF ROUTINE INTERVENTION DATA</span></div>
+                <div class="data-flow-intro"><p>Prepare and clean routine intervention data.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-10-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">COMBINE INTERVENTION FILES</div><div class="card-description">Merge intervention files</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-2')"><div class="card-header"><div class="card-number">2</div><div class="card-title">RENAME INTERVENTION VARIABLES</div><div class="card-description">Standardize column names</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-3')"><div class="card-header"><div class="card-number">3</div><div class="card-title">CREATE INTERVENTION INDICATORS</div><div class="card-description">Compute derived variables</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-4')"><div class="card-header"><div class="card-number">4</div><div class="card-title">SORT INTERVENTION COLUMNS</div><div class="card-description">Reorder columns</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-5')"><div class="card-header"><div class="card-number">5</div><div class="card-title">SPLIT PERIOD COLUMN</div><div class="card-description">Split year and month</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-6')"><div class="card-header"><div class="card-number">6</div><div class="card-title">CREATE FACILITY UID</div><div class="card-description">Generate unique IDs</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-7')"><div class="card-header"><div class="card-number">7</div><div class="card-title">CREATE REPORT COLUMN</div><div class="card-description">Add report columns</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-8')"><div class="card-header"><div class="card-number">8</div><div class="card-title">CREATE YEAR-MONTH COLUMN</div><div class="card-description">Combine year-month</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-9')"><div class="card-header"><div class="card-number">9</div><div class="card-title">DIAGNOSTIC CHECK</div><div class="card-description">Run diagnostics</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-10')"><div class="card-header"><div class="card-number">10</div><div class="card-title">COLUMN CONSISTENCY CHECK</div><div class="card-description">Verify consistency</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-11')"><div class="card-header"><div class="card-number">11</div><div class="card-title">OUTLIER DETECTION</div><div class="card-description">Detect outliers</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-12')"><div class="card-header"><div class="card-number">12</div><div class="card-title">MERGE INTERVENTION FILES</div><div class="card-description">Merge files</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-13')"><div class="card-header"><div class="card-number">13</div><div class="card-title">MERGE WITH POPULATION & SHAPEFILE</div><div class="card-description">Combine datasets</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-14')"><div class="card-header"><div class="card-number">14</div><div class="card-title">DATA TYPE CONVERSION</div><div class="card-description">Convert data types</div></div></div>
+                    <div class="card" onclick="openModal('modal-10-15')"><div class="card-header"><div class="card-number">15</div><div class="card-title">FINAL INTERVENTION DATABASE</div><div class="card-description">Generate final database</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 10 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section11">
+                <div class="section-title-bar"><span class="section-number">11</span><span class="section-title">COHERENCY CHECK & STRIPPLOTS (INTERVENTION)</span></div>
+                <div class="data-flow-intro"><p>Validate intervention data coherency.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-11-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">INTERVENTION COHERENCY CHECK</div><div class="card-description">Run coherency validation</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 11 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section12">
+                <div class="section-title-bar"><span class="section-number">12</span><span class="section-title">GEOSPATIAL ANALYSIS OF ROUTINE INTERVENTION DATA</span></div>
+                <div class="data-flow-intro"><p>Perform geospatial analysis on intervention data.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-12-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">INTERVENTION GEOSPATIAL ANALYSIS</div><div class="card-description">Generate geospatial analysis</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 12 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section13">
+                <div class="section-title-bar"><span class="section-number">13</span><span class="section-title">DATA PREPROCESSING OF ROUTINE STOCKOUT DATA</span></div>
+                <div class="data-flow-intro"><p>Prepare and clean routine stockout data.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-13-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">COMBINE STOCKOUT FILES</div><div class="card-description">Merge stockout files</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-2')"><div class="card-header"><div class="card-number">2</div><div class="card-title">RENAME STOCKOUT VARIABLES</div><div class="card-description">Standardize column names</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-3')"><div class="card-header"><div class="card-number">3</div><div class="card-title">CREATE STOCKOUT INDICATORS</div><div class="card-description">Compute derived variables</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-4')"><div class="card-header"><div class="card-number">4</div><div class="card-title">SORT STOCKOUT COLUMNS</div><div class="card-description">Reorder columns</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-5')"><div class="card-header"><div class="card-number">5</div><div class="card-title">SPLIT PERIOD COLUMN</div><div class="card-description">Split year and month</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-6')"><div class="card-header"><div class="card-number">6</div><div class="card-title">CREATE FACILITY UID</div><div class="card-description">Generate unique IDs</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-7')"><div class="card-header"><div class="card-number">7</div><div class="card-title">CREATE REPORT COLUMN</div><div class="card-description">Add report columns</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-8')"><div class="card-header"><div class="card-number">8</div><div class="card-title">CREATE YEAR-MONTH COLUMN</div><div class="card-description">Combine year-month</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-9')"><div class="card-header"><div class="card-number">9</div><div class="card-title">DIAGNOSTIC CHECK</div><div class="card-description">Run diagnostics</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-10')"><div class="card-header"><div class="card-number">10</div><div class="card-title">COLUMN CONSISTENCY CHECK</div><div class="card-description">Verify consistency</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-11')"><div class="card-header"><div class="card-number">11</div><div class="card-title">OUTLIER DETECTION</div><div class="card-description">Detect outliers</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-12')"><div class="card-header"><div class="card-number">12</div><div class="card-title">MERGE STOCKOUT FILES</div><div class="card-description">Merge files</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-13')"><div class="card-header"><div class="card-number">13</div><div class="card-title">MERGE WITH POPULATION & SHAPEFILE</div><div class="card-description">Combine datasets</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-14')"><div class="card-header"><div class="card-number">14</div><div class="card-title">DATA TYPE CONVERSION</div><div class="card-description">Convert data types</div></div></div>
+                    <div class="card" onclick="openModal('modal-13-15')"><div class="card-header"><div class="card-number">15</div><div class="card-title">FINAL STOCKOUT DATABASE</div><div class="card-description">Generate final database</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 13 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section14">
+                <div class="section-title-bar"><span class="section-number">14</span><span class="section-title">COHERENCY CHECK & STRIPPLOTS (STOCKOUT)</span></div>
+                <div class="data-flow-intro"><p>Validate stockout data coherency.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-14-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">STOCKOUT COHERENCY CHECK</div><div class="card-description">Run coherency validation</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 14 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section15">
+                <div class="section-title-bar"><span class="section-number">15</span><span class="section-title">GEOSPATIAL ANALYSIS OF ROUTINE STOCKOUT DATA</span></div>
+                <div class="data-flow-intro"><p>Perform geospatial analysis on stockout data.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-15-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">STOCKOUT GEOSPATIAL ANALYSIS</div><div class="card-description">Generate geospatial analysis</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 15 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section16">
+                <div class="section-title-bar"><span class="section-number">16</span><span class="section-title">GEOSPATIAL ANALYSIS OF OTHER INTERVENTIONS</span></div>
+                <div class="data-flow-intro"><p>Perform geospatial analysis on other interventions.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-16-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">OTHER INTERVENTIONS GEOSPATIAL</div><div class="card-description">Analyze other interventions</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 16 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section17">
+                <div class="section-title-bar"><span class="section-number">17</span><span class="section-title">DATA PREPROCESSING FOR INTERVENTION TARGETING</span></div>
+                <div class="data-flow-intro"><p>Prepare data for intervention targeting analysis.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-17-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">TARGETING DATA PREPARATION</div><div class="card-description">Prepare targeting dataset</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 17 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section18">
+                <div class="section-title-bar"><span class="section-number">18</span><span class="section-title">DECISION TREES, INTERVENTION TARGETING & MIXES</span></div>
+                <div class="data-flow-intro"><p>Design intervention packages and targeting strategies.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-18-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">INTERVENTION TARGETING & MIXES</div><div class="card-description">Design decision trees and mixes</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 18 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section19">
+                <div class="section-title-bar"><span class="section-number">19</span><span class="section-title">DECISION TREE FOR PRIORITIZATION</span></div>
+                <div class="data-flow-intro"><p>Prioritize areas for intervention implementation.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-19-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">PRIORITIZATION DECISION TREE</div><div class="card-description">Apply decision tree logic</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 19 of 20</span><button class="nav-btn next-btn" onclick="nextSection()">NEXT</button></div>
+            </div>
+
+            <div class="section-content" id="section20">
+                <div class="section-title-bar"><span class="section-number">20</span><span class="section-title">SNT COSTING TOOL</span></div>
+                <div class="data-flow-intro"><p>Calculate costs for intervention packages.</p></div>
+                <div class="cards-grid">
+                    <div class="card" onclick="openModal('modal-20-1')"><div class="card-header"><div class="card-number">1</div><div class="card-title">SNT COSTING CALCULATOR</div><div class="card-description">Calculate intervention costs</div></div></div>
+                </div>
+                <div class="nav-buttons"><button class="nav-btn back-btn" onclick="prevSection()">BACK</button><span class="nav-indicator">Section 20 of 20</span><button class="nav-btn next-btn" disabled>COMPLETE</button></div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p style="margin: 0;">National Malaria Control Programme</p>
+            <p>Ministry of Health and Sanitation, Sierra Leone</p>
+            <p style="font-size: 11px;">Medical Stores Compound, Freetown, Sierra Leone</p>
+            <p style="font-size: 10px;">© 2025 Informatics Consultancy Firm-Sierra Leone (ICF-SL)</p>
+        </div>
+    </div>
+
+    <div id="dynamicModal" class="modal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modalTitle">
+                    <span class="card-number" id="modalNumber">1</span>
+                    <span id="modalTitleText">TOOL NAME</span>
+                </h2>
+                <div class="modal-header-buttons">
+                    <button class="open-external-btn" id="openExternalBtn" onclick="openInNewTab()" style="display: none;">OPEN IN NEW TAB</button>
+                    <button class="close-btn" onclick="closeModal()">×</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <div class="loading-container" id="loadingContainer" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading tool...</div>
+                    </div>
+                    <iframe id="modalIframe" src="" style="display: none;"></iframe>
+                    <div class="streamlit-notice" id="streamlitNotice">
+                        <div class="notice-icon" id="noticeIcon"></div>
+                        <h3 id="noticeTitle">External Application</h3>
+                        <p id="noticeText">This tool requires opening in a new browser tab.</p>
+                        <button class="open-btn" onclick="openInNewTab()">OPEN APPLICATION</button>
+                    </div>
+                    <div class="placeholder-message" id="modalPlaceholder">
+                        <div class="placeholder-icon" id="placeholderIcon"></div>
+                        <h3 id="placeholderTitle">Tool Name</h3>
+                        <p id="placeholderText">URL not configured yet. Edit the <code>toolUrls</code> object.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+    <script>
+        let deferredPrompt;
+        let newWorker;
+        let currentSection = 1;
+        const totalSections = 20;
+        let currentToolUrl = '';
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        registration.addEventListener('updatefound', () => {
+                            newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    document.getElementById('updateNotification').style.display = 'block';
+                                }
+                            });
+                        });
+                    }).catch(error => console.log('ServiceWorker registration failed:', error));
+            });
+        }
+
+        function updateApp() {
+            if (newWorker) newWorker.postMessage({ type: 'SKIP_WAITING' });
+            window.location.reload();
+        }
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('pwaInstallBtn').style.display = 'block';
+        });
+
+        function installPWA() {
+            const btn = document.getElementById('pwaInstallBtn');
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        btn.innerHTML = 'INSTALLED';
+                        btn.classList.add('installed');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            const btn = document.getElementById('pwaInstallBtn');
+            btn.style.display = 'block';
+            btn.innerHTML = 'INSTALLED';
+            btn.classList.add('installed');
+        }
+
+        const sectionNames = {
+            1: "DATA EXTRACTION", 2: "DATA TRANSFORMATION", 3: "ROUTINE EPI PREPROCESSING",
+            4: "REPORTING ANALYSIS", 5: "HF ACTIVE STATUS", 6: "COHERENCY CHECK",
+            7: "CASE MANAGEMENT", 8: "EPI STRATIFICATION", 9: "OTHER DETERMINANTS",
+            10: "INTERVENTION PREPROCESSING", 11: "INTERVENTION COHERENCY", 12: "INTERVENTION GEOSPATIAL",
+            13: "STOCKOUT PREPROCESSING", 14: "STOCKOUT COHERENCY", 15: "STOCKOUT GEOSPATIAL",
+            16: "OTHER INTERVENTIONS", 17: "TARGETING PREPROCESSING", 18: "DECISION TREES & MIXES",
+            19: "PRIORITIZATION", 20: "SNT COSTING"
+        };
+
+        const toolUrls = {
+            "1-1": "https://mohamedsillahkanu.github.io/dataset-download/",
+            "1-2": "https://gdp-dashboard-ddk50fm82fk.streamlit.app/?embed=true",
+            "1-3": "https://africa-rainfall-datasets.streamlit.app/?embed=true",
+            "2-1": "https://mohamedsillahkanu.github.io/admin-level-hierarchy-extraction/",
+            "2-2": "https://mohamedsillahkanu.github.io/wide-to-long-format/",
+            "2-3": "https://mohamedsillahkanu.github.io/long-to-wide-format/",
+            "2-4": "https://mohamedsillahkanu.github.io/fuzzy-name-routinedata-population/",
+            "2-5": "https://mohamedsillahkanu.github.io/fuzzy-shapefile-routine/",
+            "2-6": "https://mohamedsillahkanu.github.io/fuzzy-mfl-dhis2/",
+            "2-7": "https://mohamedsillahkanu.github.io/hf-coordinate-cleaning/",
+            "2-8": "https://mohamedsillahkanu.github.io/coordinate-conversion/",
+            "2-9": "https://mohamedsillahkanu.github.io/column-grouping-tool/",
+            "2-10": "https://mohamedsillahkanu.github.io/geojson-to-shapefile/",
+            "2-11": "https://mohamedsillahkanu.github.io/shapefile-to-geojson/",
+            "2-12": "https://mohamedsillahkanu.github.io/shapefile-boundary-overlay/",
+            "3-1": "https://mohamedsillahkanu.github.io/combine-files/",
+            "3-2": "https://mohamedsillahkanu.github.io/rename-variables/",
+            "3-3": "https://mohamedsillahkanu.github.io/create-new-variables/",
+            "3-4": "https://mohamedsillahkanu.github.io/sort/",
+            "3-5": "https://mohamedsillahkanu.github.io/split-period-column/",
+            "3-6": "https://mohamedsillahkanu.github.io/hfuid/",
+            "3-7": "https://mohamedsillahkanu.github.io/report-column/",
+            "3-8": "https://mohamedsillahkanu.github.io/year-month-combiner/",
+            "3-9": "https://mohamedsillahkanu.github.io/diagnostic-tool/",
+            "3-10": "https://mohamedsillahkanu.github.io/consistent-column-checker/",
+            "3-11": "https://mohamedsillahkanu.github.io/outlier/",
+            "3-12": "https://mohamedsillahkanu.github.io/file-merger/",
+            "3-13": "https://mohamedsillahkanu.github.io/merge-pop-routine-shapefilekey/",
+            "3-14": "https://mohamedsillahkanu.github.io/data-type/",
+            "3-15": "https://mohamedsillahkanu.github.io/final-database/",
+            "4-1": "https://mohamedsillahkanu.github.io/heatmap/",
+            "4-2": "", "4-3": "https://mohamedsillahkanu.github.io/reporting-rate/",
+            "5-1": "", "6-1": "", "7-1": "",
+            "8-1": "https://gdp-dashboard-ddk50fm82fk.streamlit.app/?embed=true",
+            "8-2": "https://mohamedsillahkanu.github.io/tpr/",
+            "8-3": "https://mohamedsillahkanu.github.io/crude-incidence/",
+            "8-4": "", "8-5": "", "8-6": "", "8-7": "",
+            "9-1": "", "9-2": "", "9-3": "",
+            "9-4": "https://access-to-care.streamlit.app/?embed=true",
+            "10-1": "", "10-2": "", "10-3": "", "10-4": "", "10-5": "", "10-6": "", "10-7": "",
+            "10-8": "", "10-9": "", "10-10": "", "10-11": "", "10-12": "", "10-13": "", "10-14": "", "10-15": "",
+            "11-1": "", "12-1": "",
+            "13-1": "", "13-2": "", "13-3": "", "13-4": "", "13-5": "", "13-6": "", "13-7": "",
+            "13-8": "", "13-9": "", "13-10": "", "13-11": "", "13-12": "", "13-13": "", "13-14": "", "13-15": "",
+            "14-1": "", "15-1": "", "16-1": "", "17-1": "", "18-1": "", "19-1": "", "20-1": ""
+        };
+
+        const externalTools = { "1-2": true, "1-3": true, "8-1": true, "9-4": true };
+
+        const toolInfo = {
+            "1-1": { title: "EXTRACT DHIS2 ROUTINE DATA" }, "1-2": { title: "POPULATION DATA" }, "1-3": { title: "RAINFALL DATA" },
+            "2-1": { title: "ADMIN LEVEL HIERARCHY" }, "2-2": { title: "WIDE TO LONG FORMAT" }, "2-3": { title: "LONG TO WIDE FORMAT" },
+            "2-4": { title: "FUZZY MATCH: POPULATION & ROUTINE" }, "2-5": { title: "FUZZY MATCH: SHAPEFILE & ROUTINE" },
+            "2-6": { title: "FUZZY MATCH: MFL & DHIS2" }, "2-7": { title: "HF COORDINATE CLEANING" },
+            "2-8": { title: "COORDINATE CONVERSION" }, "2-9": { title: "COLUMN GROUPING TOOL" },
+            "2-10": { title: "JSON TO SHAPEFILE" }, "2-11": { title: "SHAPEFILE TO JSON" }, "2-12": { title: "SHAPEFILE BOUNDARY OVERLAY" },
+            "3-1": { title: "COMBINE EPI FILES" }, "3-2": { title: "RENAME EPI VARIABLES" }, "3-3": { title: "CREATE EPI INDICATORS" },
+            "3-4": { title: "SORT EPI COLUMNS" }, "3-5": { title: "SPLIT PERIOD COLUMN" }, "3-6": { title: "CREATE FACILITY UID" },
+            "3-7": { title: "CREATE REPORT COLUMN" }, "3-8": { title: "CREATE YEAR-MONTH COLUMN" }, "3-9": { title: "DIAGNOSTIC CHECK" },
+            "3-10": { title: "COLUMN CONSISTENCY CHECK" }, "3-11": { title: "OUTLIER DETECTION" }, "3-12": { title: "MERGE EPI FILES" },
+            "3-13": { title: "MERGE WITH POPULATION & SHAPEFILE" }, "3-14": { title: "DATA TYPE CONVERSION" }, "3-15": { title: "FINAL EPI DATABASE" },
+            "4-1": { title: "REPORTING MATRIX" }, "4-2": { title: "HF REPORTING STATUS" }, "4-3": { title: "REPORTING RATE BY ADMIN LEVEL" },
+            "5-1": { title: "HF ACTIVE/INACTIVE STATUS" }, "6-1": { title: "COHERENCY CHECK & STRIPPLOTS" }, "7-1": { title: "CASE MANAGEMENT ANALYSIS" },
+            "8-1": { title: "POPULATION GEOSPATIAL" }, "8-2": { title: "TEST POSITIVITY RATE" }, "8-3": { title: "CRUDE INCIDENCE" },
+            "8-4": { title: "ADJUSTED INCIDENCE (LEVEL 1)" }, "8-5": { title: "ADJUSTED INCIDENCE (LEVEL 2)" },
+            "8-6": { title: "ADJUSTED INCIDENCE (LEVEL 3)" }, "8-7": { title: "RISK CLASSIFICATION" },
+            "9-1": { title: "SEASONALITY ANALYSIS" }, "9-2": { title: "SMC ELIGIBILITY" },
+            "9-3": { title: "POINT COORDINATES" }, "9-4": { title: "ACCESS TO CARE" },
+            "10-1": { title: "COMBINE INTERVENTION FILES" }, "10-2": { title: "RENAME INTERVENTION VARIABLES" },
+            "10-3": { title: "CREATE INTERVENTION INDICATORS" }, "10-4": { title: "SORT INTERVENTION COLUMNS" },
+            "10-5": { title: "SPLIT PERIOD COLUMN" }, "10-6": { title: "CREATE FACILITY UID" },
+            "10-7": { title: "CREATE REPORT COLUMN" }, "10-8": { title: "CREATE YEAR-MONTH COLUMN" },
+            "10-9": { title: "DIAGNOSTIC CHECK" }, "10-10": { title: "COLUMN CONSISTENCY CHECK" },
+            "10-11": { title: "OUTLIER DETECTION" }, "10-12": { title: "MERGE INTERVENTION FILES" },
+            "10-13": { title: "MERGE WITH POPULATION & SHAPEFILE" }, "10-14": { title: "DATA TYPE CONVERSION" },
+            "10-15": { title: "FINAL INTERVENTION DATABASE" }, "11-1": { title: "INTERVENTION COHERENCY CHECK" },
+            "12-1": { title: "INTERVENTION GEOSPATIAL ANALYSIS" },
+            "13-1": { title: "COMBINE STOCKOUT FILES" }, "13-2": { title: "RENAME STOCKOUT VARIABLES" },
+            "13-3": { title: "CREATE STOCKOUT INDICATORS" }, "13-4": { title: "SORT STOCKOUT COLUMNS" },
+            "13-5": { title: "SPLIT PERIOD COLUMN" }, "13-6": { title: "CREATE FACILITY UID" },
+            "13-7": { title: "CREATE REPORT COLUMN" }, "13-8": { title: "CREATE YEAR-MONTH COLUMN" },
+            "13-9": { title: "DIAGNOSTIC CHECK" }, "13-10": { title: "COLUMN CONSISTENCY CHECK" },
+            "13-11": { title: "OUTLIER DETECTION" }, "13-12": { title: "MERGE STOCKOUT FILES" },
+            "13-13": { title: "MERGE WITH POPULATION & SHAPEFILE" }, "13-14": { title: "DATA TYPE CONVERSION" },
+            "13-15": { title: "FINAL STOCKOUT DATABASE" }, "14-1": { title: "STOCKOUT COHERENCY CHECK" },
+            "15-1": { title: "STOCKOUT GEOSPATIAL ANALYSIS" }, "16-1": { title: "OTHER INTERVENTIONS GEOSPATIAL" },
+            "17-1": { title: "TARGETING DATA PREPARATION" }, "18-1": { title: "INTERVENTION TARGETING & MIXES" },
+            "19-1": { title: "PRIORITIZATION DECISION TREE" }, "20-1": { title: "SNT COSTING CALCULATOR" }
+        };
+
+        function goToSection(sectionNum) {
+            if (sectionNum < 1 || sectionNum > totalSections) return;
+            currentSection = sectionNum;
+            updateSectionDisplay();
+        }
+
+        function nextSection() {
+            if (currentSection < totalSections) { currentSection++; updateSectionDisplay(); }
+        }
+
+        function prevSection() {
+            if (currentSection > 1) { currentSection--; updateSectionDisplay(); }
+        }
+
+        function updateSectionDisplay() {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.getElementById('section' + currentSection).classList.add('active');
+            document.querySelectorAll('.section-tab').forEach((t, i) => t.classList.toggle('active', i + 1 === currentSection));
+            document.getElementById('progressFill').style.width = (currentSection / totalSections * 100) + '%';
+            document.getElementById('progressText').textContent = 'Section ' + currentSection + ' of ' + totalSections + ' | ' + sectionNames[currentSection];
+            document.querySelector('.content-card').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openModal(modalId) {
+            const toolKey = modalId.replace('modal-', '');
+            const modal = document.getElementById('dynamicModal');
+            const iframe = document.getElementById('modalIframe');
+            const placeholder = document.getElementById('modalPlaceholder');
+            const loadingContainer = document.getElementById('loadingContainer');
+            const openExternalBtn = document.getElementById('openExternalBtn');
+            const url = toolUrls[toolKey];
+            const info = toolInfo[toolKey];
+
+            currentToolUrl = url;
+            document.getElementById('modalNumber').textContent = toolKey.split('-')[1];
+            document.getElementById('modalTitleText').textContent = info.title;
+            document.getElementById('placeholderTitle').textContent = info.title;
+
+            iframe.style.display = 'none';
+            placeholder.style.display = 'none';
+            loadingContainer.style.display = 'none';
+            openExternalBtn.style.display = 'none';
+            document.getElementById('streamlitNotice').style.display = 'none';
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            if (!url || url.trim() === '') { placeholder.style.display = 'flex'; return; }
+            if (externalTools[toolKey]) openExternalBtn.style.display = 'flex';
+
+            loadingContainer.style.display = 'flex';
+            iframe.onload = function() { loadingContainer.style.display = 'none'; iframe.style.display = 'block'; };
+            iframe.onerror = function() { loadingContainer.style.display = 'none'; placeholder.style.display = 'flex'; };
+            iframe.src = url;
+        }
+
+        function openInNewTab() {
+            if (currentToolUrl && currentToolUrl.trim() !== '') window.open(currentToolUrl, '_blank');
+        }
+
+        function closeModal() {
+            document.getElementById('dynamicModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('modalIframe').src = '';
+            currentToolUrl = '';
+        }
+
+        function closeModalOnOutsideClick(event) {
+            if (event.target.classList.contains('modal')) closeModal();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') closeModal();
+            if (!document.querySelector('.modal.active')) {
+                if (event.key === 'ArrowRight') nextSection();
+                else if (event.key === 'ArrowLeft') prevSection();
+            }
+        });
+
+        function handleHashChange() {
+            const hash = window.location.hash;
+            if (hash.startsWith('#section')) {
+                const sectionNum = parseInt(hash.replace('#section', ''));
+                if (sectionNum >= 1 && sectionNum <= totalSections) goToSection(sectionNum);
+            }
+        }
+
+        window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('load', handleHashChange);
+    </script>
+</body>
+</html>
